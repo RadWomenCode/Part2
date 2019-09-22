@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Measurement_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Measurement Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Value1</fullName>
+                <default>false</default>
+                <label>Value1</label>
+            </value>
+            <value>
+                <fullName>Cups</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cups</label>
+            </value>
+            <value>
+                <fullName>Oz</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Oz</label>
+            </value>
+            <value>
+                <fullName>Tbl</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tbl</label>
+            </value>
+            <value>
+                <fullName>Tsp</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tsp</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Source__c</fullName>
+    <externalId>false</externalId>
+    <label>Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Serious Eats</fullName>
+                <default>false</default>
+                <label>Serious Eats</label>
+            </value>
+            <value>
+                <fullName>Self</fullName>
+                <default>false</default>
+                <label>Self</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
