@@ -1,4 +1,27 @@
 public with sharing class SOQLExercises {
+
+    public static void childToParentRelationshipQueries () {
+
+        // Let's query some Opportunities and bring down account information as well
+        List < Opportunity > bigOppsWithAccounts = [SELECT ID, Amount, AccountId, Account.Name FROM Opportunity WHERE Amount > 1000];
+        System.debug('The first big opp with account info is: '+bigOppsWithAccounts[0]);
+        System.debug('The first big opp Account Name is: '+bigOppsWithAccounts[0].Account.Name);
+
+    }
+    
+    public static void parentToChildrenRelationshipQueries () {
+
+        // Let's query Accounts and look at the child contacts as well
+        // Slightly different syntax and formatting here for declaring our list, remember, there are often multiple ways to declare objects and format queries
+        Account[] acctsWithContacts = [SELECT Name, (SELECT FirstName,LastName FROM Contacts)
+                                        FROM Account 
+                                        WHERE AnnualRevenue > 1000000];
+
+        System.debug('Our Accounts with contacts are: '+acctsWithContacts);
+        System.debug('And the Contacts on the first account are: '+acctsWithContacts[0].Contacts);
+
+    }
+
     public static void funWithAggregates () {
 
 		//1)
