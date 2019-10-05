@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nutrition_Base_Unit__c</fullName>
+    <description>For the nutrition information on this ingredient, what is the numerical unit? (For instance, if nutrition info is based on 1 tablespoon, the nutrition base unit is 1.  If nutrition info is for each 15 ml, the base unit is 15)</description>
+    <externalId>false</externalId>
+    <label>Nutrition Base Unit</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
