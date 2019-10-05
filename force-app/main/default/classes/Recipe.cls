@@ -18,6 +18,7 @@ public with sharing class Recipe {
     }
 
     // Second Constructor, allows you to instantiate a new Recipe with some pre-set values
+    // Active Time Unit options are : Minutes, Hours
     public Recipe(Integer activeTime, String activeTimeUnits, String name, Integer servingCount) {
         this.activeTime = activeTime;
         this.activeTimeUnits = activeTimeUnits;
@@ -69,7 +70,9 @@ public with sharing class Recipe {
                 newRecipeSObject.Servings__c = this.servingCount;
                 newRecipeSObject.Source__c = this.source;
                 insert newRecipeSObject;
-                
+                //assign the ID to the in-memory Recipe
+                this.sObjectID = newRecipeSObject.ID;
+                                
                 return true;
 
             } else {
