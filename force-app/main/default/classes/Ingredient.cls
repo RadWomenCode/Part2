@@ -126,7 +126,7 @@ public with sharing class Ingredient {
 
     Call out to an external service that will get us nutrition information
     The service is still being built so reults are currently mocked */
-    @future
+    @future (callout=true)
     public static void getNutritionInformation (String ingredientSobjectId, String ingredientName) {
 
         // Sample callout syntax
