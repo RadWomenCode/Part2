@@ -160,7 +160,6 @@
     </nameField>
     <pluralLabel>Ingredient</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Notes__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Type__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Preparation__c</searchResultsAdditionalFields>
