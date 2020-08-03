@@ -3,7 +3,7 @@ Source Code:https://trailhead.salesforce.com/en/content/learn/modules/apex_trigg
 */
 public class EmailManager {
     // Public method
-public static void sendMail(String address, String subject, String body) {        // Create an email message object
+    public static void sendMail(String address, String subject, String body) {        // Create an email message object
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
         String[] toAddresses = new String[] {address};
         mail.setToAddresses(toAddresses);
@@ -12,7 +12,8 @@ public static void sendMail(String address, String subject, String body) {      
         // Pass this email message to the built-in sendEmail method 
         // of the Messaging class
         Messaging.SendEmailResult[] results = Messaging.sendEmail(
-                                 new Messaging.SingleEmailMessage[] { mail });
+            new Messaging.SingleEmailMessage[] { mail }
+        );
         
         // Call a helper method to inspect the returned results
         inspectResults(results);
