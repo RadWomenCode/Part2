@@ -95,7 +95,6 @@ public with sharing class Ingredient {
                 updateIngredient.measurement__c = this.measurement;
                 updateIngredient.measurement_type__c = this.measurementType;
                 updateIngredient.description__c = this.description;
-                updateIngredient.Recipe__c = this.recipeId;
 
                 update updateIngredient;
                 return true;

@@ -10,5 +10,6 @@
     "**/.project": true,
     "**/.settings": true,
     "**/.factorypath": true
-  }
+  },
+  "prettier.tabWidth": 4
 }

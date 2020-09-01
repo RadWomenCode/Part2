@@ -71,5 +71,83 @@ private class PackageUploadTests {
         SOQLExercises.SOSL();
     }
 
+    @isTest
+    static void testMethodFive() {
+        Recipe rec1 = new Recipe(5,'Minutes','Test',4);
+        Recipe rec2 = new Recipe(5,'Minutes','Test',4);
+
+        Recipe__c recSobj = new Recipe__c();
+        recSobj.Name__c ='Test';
+        insert recSobj;
+        Recipe rec3 = new Recipe(recSobj.Id);
+
+        rec2.name = 'My Recipe';
+        rec2.description = 'description';
+        rec2.activeTime = 5;
+        rec2.activeTimeUnits = 'Hours';
+        rec2.create();
+
+        rec2.activeTime = 10;
+        rec2.activeTimeUnits = 'Minutes';
+        rec2.updateValues();
+
+    }
+
+    @isTest
+    static void testMethodSix() {
+        Recipe rec2 = new Recipe(5,'Minutes','Test',4);
+        rec2.name = 'My Recipe';
+        rec2.description = 'description';
+        rec2.create();
+
+        Recipe__c rec = [SELECT ID, Active_Time_Units__c, Active_Time__c, Servings__c FROM Recipe__c WHERE ID=:rec2.sObjectID];
+
+        Integer rating = HelperFunctions.rateRecipeComplexity(rec);
+
+        // create ingredient
+        Ingredient__c ing = new Ingredient__c();
+        ing.Recipe__c = rec.Id;
+        ing.Name = 'IngredientName';
+        insert ing;
+
+        Boolean allergin = HelperFunctions.ingredientIsKnownAllergen(ing);
+
+    } 
+
+    @isTest
+    static void testMethodEight() {
+        CollectionsReview.allAboutSets();
+        CollectionsReview.introToLists();
+        CollectionsReview.muchAdoAboutMaps();
+    }
+
+    @isTest
+    static void testMethodNine() {
+        Ingredient ing1 = new Ingredient();
+
+        // create recipe that is not a draft
+        Recipe__c rec = new Recipe__c();
+        rec.Name = 'Test Recipe 1';
+        insert rec;
+
+        // create ingredient
+        Ingredient__c ing = new Ingredient__c();
+        ing.Recipe__c = rec.Id;
+        ing.Name = 'IngredientName';
+        ing.Description__c = 'description';
+        ing.Measurement_Type__c = 'Tsp';
+        ing.Measurement__c = 2;
+        insert ing;
+
+        Ingredient ing2 = new Ingredient(rec.Id, 'test Ingredient', 4.0, 'Tsp');
+        ing2.create();
+
+        Ingredient ing3 = new Ingredient(ing.id);
+        ing3.name = 'updated name';
+        ing3.updateValues();
+        
+
+        
+    }
 
 }

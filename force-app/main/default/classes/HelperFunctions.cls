@@ -6,11 +6,11 @@ global without sharing class HelperFunctions {
     public static Integer rateRecipeComplexity (Recipe__c rec) {
         // TODO: we should consider the number of ingredients, but we'll have to move and bulkify to accomodate the query
         System.debug('rec: '+rec);
-        // If the recipe has an active time of more than an hour, it's complex
-        if ((rec.Active_Time_Units__c=='Minutes' && rec.Active_Time__c>60) || rec.Active_Time_Units__c=='Hours' && rec.Active_Time__c>1) {
+        // If the recipe has an active time of an hour or more, it's complex
+        if ((rec.Active_Time_Units__c=='Minutes' && rec.Active_Time__c>=60) || rec.Active_Time_Units__c=='Hours' && rec.Active_Time__c>=1) {
             return 3;
-        //If it's less than an hour and fewer than 4 servings it's medium
-        } else if (rec.Servings__c>4 && ((rec.Active_Time_Units__c=='Minutes' && rec.Active_Time__c<60) || (rec.Active_Time_Units__c=='Hours' && rec.Active_Time__c<1))) {
+        //If it's less than an hour but it has over 6 servings, we'll call it medium
+        } else if (rec.Servings__c>6) {
             return 2;
         //Otherwise, it's considered simple
         } else {

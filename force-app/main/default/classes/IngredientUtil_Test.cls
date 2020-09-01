@@ -1,6 +1,29 @@
 @isTest
 private class IngredientUtil_Test {
 
+    
+    @isTest static void testFlagNonDraftRecipe () {
+        // when a new ingredient is added, non-draft recipes should be flagged for review. 
+        
+        // create recipe that is not a draft
+        Recipe__c rec = new Recipe__c();
+        rec.Name = 'Test Recipe 1';
+        insert rec;
+
+        // create ingredient
+        Ingredient__c ing = new Ingredient__c();
+        ing.Recipe__c = rec.Id;
+        ing.Name = 'IngredientName';
+        insert ing;
+
+        // validate that the recipe is now marked as needs review
+        Recipe__c updatedRecipe = [SELECT ID, Needs_Review__c FROM Recipe__c WHERE ID=:rec.Id];
+        
+        System.assertEquals(true, updatedRecipe.Needs_Review__c);
+        
+    }
+
+
     @isTest static void testDupeChecker(){
 
         // 1. Data Setup
@@ -33,4 +56,5 @@ private class IngredientUtil_Test {
         Test.stopTest();
 
     }
+
 }
