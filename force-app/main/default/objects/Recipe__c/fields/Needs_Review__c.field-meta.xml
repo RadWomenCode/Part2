@@ -3,7 +3,7 @@
     <fullName>Needs_Review__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>Contains Allergins</label>
+    <label>Needs Review</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

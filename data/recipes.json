@@ -1,0 +1,40 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "MacAndCheeseRef"
+            },
+            "Name": "3-Ingredient Stovetop Macaroni and Cheese Recipe",
+            "Active_Time__c": 8,
+            "Active_Time_Units__c": "Minutes",
+            "Complexity__c": "Simple",
+            "Contains_Allergins__c": false,
+            "Description__c": "A quick and tasty dinner",
+            "Draft__c": true,
+            "Duration__c": "Quick",
+            "Needs_Review__c": false,
+            "Season__c": "All Season",
+            "Servings__c": 2,
+            "Source__c": "Serious Eats"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "GamjaBokkeumRef"
+            },
+            "Name": "Gamja Bokkeum",
+            "Active_Time__c": 10,
+            "Active_Time_Units__c": "Minutes",
+            "Complexity__c": "Simple",
+            "Contains_Allergins__c": false,
+            "Description__c": "Korean Sweet Soy-Glazed Potatoes",
+            "Draft__c": true,
+            "Duration__c": "Quick",
+            "Needs_Review__c": false,
+            "Season__c": "All Season",
+            "Servings__c": 4,
+            "Source__c": "Serious Eats"
+        }
+    ]
+}
