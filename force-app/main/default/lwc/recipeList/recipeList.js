@@ -1,3 +1,5 @@
+// Adapted from the Trailhead Bear Tracking App  https://github.com/trailheadapps/build-apps-with-lwc
+
 import { LightningElement, wire } from 'lwc';
 import BOOK_IMG from '@salesforce/resourceUrl/CookbookSilhouette';
 

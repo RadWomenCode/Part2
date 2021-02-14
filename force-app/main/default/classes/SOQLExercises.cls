@@ -3,8 +3,6 @@ public with sharing class SOQLExercises {
     public static void childToParentRelationshipQueries () {
 
         // Let's query some Opportunities and bring down account information as well
-		// another comment
-		//another line of comments
         List < Opportunity > bigOppsWithAccounts = [SELECT ID, Amount, AccountId, Account.Name FROM Opportunity WHERE Amount > 1000];
         System.debug('The first big opp with account info is: '+bigOppsWithAccounts[0]);
         System.debug('The first big opp Account Name is: '+bigOppsWithAccounts[0].Account.Name);
@@ -50,7 +48,11 @@ public with sharing class SOQLExercises {
 
 		//3)
 		//What if we add a group by?
-		AggregateResult[] avgAmountResultGrouped = [SELECT Type, AVG(AMOUNT)aver FROM Opportunity GROUP BY Type];
+		AggregateResult[] avgAmountResultGrouped = [
+			SELECT Type, AVG(AMOUNT)aver 
+			FROM Opportunity 
+			GROUP BY Type
+		];
 		
 
 		//Let's loop through those results and print them out in a readable way
@@ -68,11 +70,24 @@ public with sharing class SOQLExercises {
 
 	public static void workingWithSOQLResults () {
 
-		Account a = [SELECT ID, Name FROM Account WHERE Name='Acme Consulting Co.' LIMIT 1];
+		Account a = [
+			SELECT ID, Name 
+			FROM Account 
+			WHERE Name='Acme Consulting Co.' 
+			LIMIT 1
+		];
 
-		List < Account > accountList = [SELECT ID, Name, AnnualRevenue FROM Account WHERE AnnualRevenue > 1000000];
+		List < Account > accountList = [
+			SELECT ID, Name, AnnualRevenue 
+			FROM Account 
+			WHERE AnnualRevenue > 1000000
+		];
 
-		Map < ID, Account > accountMap = new Map < ID, Account >([SELECT ID, Name, AnnualRevenue FROM Account WHERE AnnualRevenue > 1000000]);
+		Map < ID, Account > accountMap = new Map < ID, Account >([
+			SELECT ID, Name, AnnualRevenue 
+			FROM Account 
+			WHERE AnnualRevenue > 1000000
+		]);
 
 	}
 
