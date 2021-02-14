@@ -1,7 +1,5 @@
 @isTest
-private class RecipeUtilityTest {
-    
-
+private class WeekFourHomeworkCheck {
     @isTest
     static void testRequiredValuesPositive() {
         // name, active time/units, description and servings should all be reqired on final recipes
@@ -191,6 +189,5 @@ private class RecipeUtilityTest {
 
         System.assertEquals(1, taskList.size(), 'There should only be one task to review the cookbook.');
 
-    }  
-
+    }
 }
