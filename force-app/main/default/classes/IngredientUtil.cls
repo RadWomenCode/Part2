@@ -1,38 +1,35 @@
 public with sharing class IngredientUtil {
 
-    //Variables to store Trigger.oldMap & Trigger.newMap
-    List < Ingredient__c > newIngredientsList;
-	Map<ID, Ingredient__c> oldIngredientsMap;
-    Map<ID, Ingredient__c> newIngredientsMap; //null on insert
-    
+    //Class Variables to store trigger context variables
+    private String operationType; //Stores the Trigger.operationType in String format (e.g. BEFORE_INSERT, AFTER_INSERT etc.)
+    private List < Ingredient__c > newIngredientsList; //A list of Ingredient SObjects being inserted or, in their most up-to-date state
+    private Map < ID, Ingredient__c > newIngredientsMap;  //Same as the newIngredientsList but in map format
+    private List < Ingredient__c > oldIngredientsList; //A list of Ingredient SObjects being updated or deleted, in whatever state they were in BEFORE the update
+	private Map < ID, Ingredient__c > oldIngredientsMap; //Same as the oldIngredientsList but in map format  
 
-	//Constructor that takes in the map of old recipe records and new/updated recipe records and assigns them to class variables
-	public IngredientUtil(List < Ingredient__c > newIngredients, Map<ID, Ingredient__c> newTriggerIngredientsMap, Map<ID, Ingredient__c> oldTriggerIngredientsMap) {
-        this.newIngredientsList = newIngredients;
-        this.oldIngredientsMap = oldTriggerIngredientsMap;
-		this.newIngredientsMap = newTriggerIngredientsMap;
-	}
-
-    //Handler Methods called by Trigger, call functional methods in turn.
-    public void onBeforeInsert() {
-        checkForDupes();
+    //Constructor that takes in the trigger context variables and assigns them to class variables
+    public IngredientUtil(String opType, List < Ingredient__c > ingList, Map < ID, Ingredient__c > ingMap, List < Ingredient__c > ingOldList, Map < ID, Ingredient__c > ingOldMap) {
+        this.operationType = opType;
+        this.newIngredientsList = ingList;
+        this.newIngredientsMap = ingMap;
+        this.oldIngredientsList = ingOldList;
+        this.oldIngredientsMap = ingOldMap;
     }
 
-    public void onAfterInsert() {
-        // TODO: both of these methods update Recipe__c records.  Combine into single DML, maybe with a trigger framework??
-        checkForAllergins();
-        flagChangesOnNonDraftRecipes();
-
+    public void processRecords() {
+        if (operationType=='BEFORE_INSERT') {
+            checkForDupes();
+        } else if (operationType=='AFTER_INSERT') {
+            // TODO: both of these methods update Recipe__c records.  Combine into single DML, maybe with a trigger framework??
+            checkForAllergins();
+            flagChangesOnNonDraftRecipes();
+        } else if (operationType=='AFTER_UPDATE') {
+            checkForAllergins();
+        }
     }
-
-    public void onAfterUpdate() {
-        checkForAllergins();
-    }
-
-
 
     // Methods with handler logic
-    public void checkForAllergins() {
+    private void checkForAllergins() {
         // if the ingredient is a potential allergin, mark the recipe as containing allergins
         List < ID > recipesWithAllergens = new List < ID >();
 
