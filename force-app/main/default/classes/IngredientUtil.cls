@@ -55,7 +55,7 @@ public with sharing class IngredientUtil {
     }
 
     private void checkForDupes() {
-        // Don't allow an ingredient to be inserted if there is already an ingredient in the system with the same name
+        // Don't allow an ingredient to be added to a recipe if that same ingredient is already on that recipe
         
         //list to hold the names of all ingredients being inserted
         List < String > ingredientNames = new List < String >();
@@ -98,7 +98,8 @@ public with sharing class IngredientUtil {
         // Map < ID, Account > accountMap = new Map < ID, Account >([SELECT ID, Name, AnnualRevenue FROM Account WHERE AnnualRevenue > 1000000]);
         for (Ingredient__c i:this.newIngredientsList ) {
             Recipe__c parentRecipe = nonDraftRecipes.get(i.Recipe__c); //If the recipe was not in the query, because it was not a draft, this will be null
-            if (parentRecipe!=null) {
+            // Check that there is a parent recipe and that the recipe isn't already in the list to update
+            if (parentRecipe!=null && recipesToUpdate.contains(parentRecipe)!=true) {
                 parentRecipe.Needs_Review__c = true;
                 recipesToUpdate.add(parentRecipe);
             }
