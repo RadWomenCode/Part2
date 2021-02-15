@@ -173,7 +173,11 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <tabSettings>
-        <tab>Cookbook</tab>
+        <tab>Cookbook__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Recipe_Usage__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
