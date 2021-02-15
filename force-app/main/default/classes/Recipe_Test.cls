@@ -14,9 +14,9 @@ private class Recipe_Test {
         Test.stopTest();
 
         //Query for the created Recipe and validate results
-        List < Recipe__c > insertedRecipeList = [SELECT ID, Name__c FROM Recipe__c];
+        List < Recipe__c > insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
         System.assertEquals(1, insertedRecipeList.size(), 'One Recipe SObject Expected');
-        System.assertEquals('Test Recipe', insertedRecipeList[0].Name__c);
+        System.assertEquals('Test Recipe', insertedRecipeList[0].Name);
 
     }
 
@@ -37,8 +37,8 @@ private class Recipe_Test {
         Test.stopTest();
 
         //Query for the created Recipe
-        List < Recipe__c > insertedRecipeList = [SELECT ID, Name__c FROM Recipe__c];
-        System.assertEquals('Changed Test Recipe Name', insertedRecipeList[0].Name__c);   
+        List < Recipe__c > insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
+        System.assertEquals('Changed Test Recipe Name', insertedRecipeList[0].Name);   
 
     }
 

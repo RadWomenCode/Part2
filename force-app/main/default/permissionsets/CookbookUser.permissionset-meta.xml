@@ -46,11 +46,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Ingredient__c.Name__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Ingredient__c.Notes__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -112,11 +107,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Recipe__c.Duration__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>Recipe__c.Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
