@@ -13,9 +13,11 @@ public with sharing class SOQLExercises {
 
         // Let's query Accounts and look at the child contacts as well
         // Slightly different syntax and formatting here for declaring our list, remember, there are often multiple ways to declare objects and format queries
-        Account[] acctsWithContacts = [SELECT Name, (SELECT FirstName,LastName FROM Contacts)
-                                        FROM Account 
-                                        WHERE AnnualRevenue > 1000000];
+        Account[] acctsWithContacts = [
+			SELECT Name, (SELECT FirstName,LastName FROM Contacts)
+            FROM Account 
+            WHERE AnnualRevenue > 1000000
+		];
 
         System.debug('Our Accounts with contacts are: '+acctsWithContacts);
         System.debug('And the Contacts on the first account are: '+acctsWithContacts[0].Contacts);
