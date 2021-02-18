@@ -1,7 +1,7 @@
 <template>
 	<lightning-card title="Recipes" icon-name="utility:food_and_drink">
 		<div class="slds-card__body_inner">
-			<!-- Start bear list -->
+			<!-- Start recipe list -->
 			<template if:true={recipes.data}>
                 <lightning-input type="search"
                     onchange={handleSearchTermChange}
@@ -29,22 +29,22 @@
 									</div>
 								</div>
 							</lightning-card>
-							<!-- End bear tile -->
+							<!-- End recipe tile -->
 						</lightning-layout-item>
 					</template>
                 </lightning-layout>
-                <!-- No bears found -->
+                <!-- No recipes found -->
                 <template if:false={hasResults}>
                     <div class="slds-align_absolute-center slds-var-m-vertical_small">
-                        This is beary disturbing, we did not find results...
+                        Oh dear, we did not find results...
                     </div>
                 </template>
 			</template>
-			<!-- End bear list -->
+			<!-- End recipe list -->
 			<!-- Data failed to load -->
 			<template if:true={error}>
 				<div class="slds-text-color_error">
-					An error occurred while loading the bear list
+					An error occurred while loading the recipe list
 				</div>
 			</template>
 		</div>
