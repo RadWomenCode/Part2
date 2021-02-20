@@ -37,6 +37,11 @@
                 <label>Grams</label>
             </value>
             <value>
+                <fullName>Pounds</fullName>
+                <default>false</default>
+                <label>Pound(s)</label>
+            </value>
+            <value>
                 <fullName>Whole</fullName>
                 <default>false</default>
                 <label>Whole</label>
