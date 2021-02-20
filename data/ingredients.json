@@ -109,6 +109,138 @@
             "Measurement_Type__c": "Tbl",
             "Notes__c": "",
             "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "KSaltRef"
+            },
+            "Name": "Kosher Salt",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "evOORef"
+            },
+            "Name": "Extra Virgin Olive Oil",
+            "Measurement__c": 6,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "wOnionRef"
+            },
+            "Name": "White Onion",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Whole",
+            "Notes__c": "Finely chopped.",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "riceRef"
+            },
+            "Name": "Carnaroli or Arborio Rice",
+            "Measurement__c": 2,
+            "Measurement_Type__c": "Cups",
+            "Notes__c": "",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "wineRef"
+            },
+            "Name": "Dry White Wine",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Cups",
+            "Notes__c": "",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "butterRef"
+            },
+            "Name": "Unsalted Butter",
+            "Measurement__c": 5,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "parmRef"
+            },
+            "Name": "Parmesan",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Cups",
+            "Notes__c": "Finely Grated Parmesan, divided.",
+            "Recipe__c": "@BARisottoRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "EVOO2Ref"
+            },
+            "Name": "Extra Virgin Olive Oil",
+            "Measurement__c": 0.3,
+            "Measurement_Type__c": "Cups",
+            "Notes__c": "",
+            "Recipe__c": "@GreenBeansRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "GreenBeansIngRef"
+            },
+            "Name": "Green Beans",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Pounds",
+            "Notes__c": "trimmed, patted dry of any surface moisture or condensation",
+            "Recipe__c": "@GreenBeansRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "garlicRef"
+            },
+            "Name": "Garlic Cloves",
+            "Measurement__c": 6,
+            "Measurement_Type__c": "Whole",
+            "Notes__c": "Sliced.",
+            "Recipe__c": "@GreenBeansRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "capersRef"
+            },
+            "Name": "Capers",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "Drained, chopped.",
+            "Recipe__c": "@GreenBeansRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "redPeppRef"
+            },
+            "Name": "Red Pepper Flakes",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Tsp",
+            "Notes__c": "Crushed",
+            "Recipe__c": "@GreenBeansRef"
         }
     ]
 }

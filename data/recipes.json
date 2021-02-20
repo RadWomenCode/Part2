@@ -35,6 +35,42 @@
             "Season__c": "All Season",
             "Servings__c": 4,
             "Source__c": "Serious Eats"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "GreenBeansRef"
+            },
+            "Name": "Blistered Green Beans with Garlic",
+            "Active_Time__c": 15,
+            "Active_Time_Units__c": "Minutes",
+            "Complexity__c": "Simple",
+            "Contains_Allergins__c": false,
+            "Description__c": "Simple and delicious Green Beans recipe",
+            "Draft__c": false,
+            "Duration__c": "Quick",
+            "Needs_Review__c": false,
+            "Season__c": "All Season",
+            "Servings__c": 4,
+            "Source__c": "Bon Appetit"
+        },
+        {
+            "attributes": {
+                "type": "Recipe__c",
+                "referenceId": "BARisottoRef"
+            },
+            "Name": "BA's Best Risotto",
+            "Active_Time__c": 1,
+            "Active_Time_Units__c": "Hours",
+            "Complexity__c": "Moderate",
+            "Contains_Allergins__c": false,
+            "Description__c": "A basic starter risotto",
+            "Draft__c": false,
+            "Duration__c": "Quick",
+            "Needs_Review__c": false,
+            "Season__c": "Winter",
+            "Servings__c": 8,
+            "Source__c": "Bon Appetit"
         }
     ]
 }
