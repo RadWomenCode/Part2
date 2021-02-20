@@ -1,0 +1,114 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "elbowMac"
+            },
+            "Name": "Elbow Macaroni",
+            "Measurement__c": 6,
+            "Measurement_Type__c": "Oz",
+            "Notes__c": "Or similar pasta",
+            "Recipe__c": "@MacAndCheeseRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "evapMilk"
+            },
+            "Name": "Evaporated Milk",
+            "Measurement__c": 6,
+            "Measurement_Type__c": "Oz",
+            "Notes__c": "",
+            "Recipe__c": "@MacAndCheeseRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "anyMeltingCheese"
+            },
+            "Name": "Mild or Medium Cheddar Cheese",
+            "Measurement__c": 6,
+            "Measurement_Type__c": "Oz",
+            "Notes__c": "Or any good melting cheese.",
+            "Recipe__c": "@MacAndCheeseRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "soySauce"
+            },
+            "Name": "Soy Sauce",
+            "Measurement__c": 3,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "sugar"
+            },
+            "Name": "Sugar",
+            "Measurement__c": 2,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "fishSauce"
+            },
+            "Name": "Fish Sauce",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Tsp",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "garlic"
+            },
+            "Name": "Garlic",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Whole",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "vegOil"
+            },
+            "Name": "Vegetable Oil",
+            "Measurement__c": 2,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "yukGold"
+            },
+            "Name": "Yukon Gold Potatoes",
+            "Measurement__c": 10,
+            "Measurement_Type__c": "Oz",
+            "Notes__c": "Rinsed and Halved",
+            "Recipe__c": "@GamjaBokkeumRef"
+        },
+        {
+            "attributes": {
+                "type": "Ingredient__c",
+                "referenceId": "sesOil"
+            },
+            "Name": "Sesame Oil",
+            "Measurement__c": 1,
+            "Measurement_Type__c": "Tbl",
+            "Notes__c": "",
+            "Recipe__c": "@GamjaBokkeumRef"
+        }
+    ]
+}

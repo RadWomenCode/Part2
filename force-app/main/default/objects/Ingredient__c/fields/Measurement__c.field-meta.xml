@@ -3,9 +3,9 @@
     <fullName>Measurement__c</fullName>
     <externalId>false</externalId>
     <label>Measurement</label>
-    <precision>18</precision>
+    <precision>15</precision>
     <required>false</required>
-    <scale>4</scale>
+    <scale>1</scale>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Number</type>

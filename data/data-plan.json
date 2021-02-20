@@ -1,0 +1,12 @@
+[
+    {
+        "sobject": "Recipe__c",
+        "saveRefs": true,
+        "files": ["recipes.json"]
+    },
+    {
+        "sobject": "Ingredient__c",
+        "resolveRefs": true,
+        "files": ["ingredients.json"]
+    }
+]

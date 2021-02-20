@@ -31,13 +31,13 @@ public with sharing class Recipe {
     //Third Constructor, allows you to instantiate a new Recipe based on an existing Recipe__c SObject ID
     public Recipe(String sObjectId) {
 
-        Recipe__c recipeSObject = [SELECT ID, Active_Time__c,Active_Time_Units__c, Description__c, Duration__c, Name__c, Season__c, Servings__c,Source__c FROM Recipe__c WHERE ID=:sObjectId];
+        Recipe__c recipeSObject = [SELECT ID, Active_Time__c,Active_Time_Units__c, Description__c, Duration__c, Season__c, Servings__c,Source__c FROM Recipe__c WHERE ID=:sObjectId];
         // Assign the values
         this.sObjectID = recipeSObject.ID;
         this.activeTime = recipeSObject.Active_Time__c;
         this.activeTimeUnits = recipeSObject.Active_Time_Units__c;
         this.description = recipeSObject.Description__c;
-        this.name = recipeSObject.Name__c;
+        this.name = recipeSObject.Name;
         this.season = recipeSObject.Season__c;
         this.servingCount = recipeSObject.Servings__c;
         this.source = recipeSObject.Source__c;
@@ -66,7 +66,7 @@ public with sharing class Recipe {
                 newRecipeSObject.Active_Time__c = this.activeTime;
                 newRecipeSObject.Active_Time_Units__c = this.activeTimeUnits;
                 newRecipeSObject.Description__c = this.description;
-                newRecipeSObject.Name__c = this.name;
+                newRecipeSObject.Name = this.name;
                 newRecipeSObject.Season__c = this.season;
                 newRecipeSObject.Servings__c = this.servingCount;
                 newRecipeSObject.Source__c = this.source;
@@ -97,7 +97,7 @@ public with sharing class Recipe {
                 updateRecipe.Active_Time__c = this.activeTime;
                 updateRecipe.Active_Time_Units__c = this.activeTimeUnits;
                 updateRecipe.Description__c = this.description;
-                updateRecipe.Name__c = this.name;
+                updateRecipe.Name = this.name;
                 updateRecipe.Season__c = this.season;
                 updateRecipe.Servings__c = this.servingCount;
                 updateRecipe.Source__c = this.source;
