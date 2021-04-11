@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import scaleRecipeForServings from '@salesforce/apex/RecipeHelper.scaleRecipeForServings';
+import scaleRecipeForServings from '@salesforce/apex/RecipeController.scaleRecipeForServings';
 
 const columns = [
     { label: 'Name', fieldName: 'Name' },

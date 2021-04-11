@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 
-import generateGroceryList from '@salesforce/apex/RecipeHelper.generateGroceryList';
+import generateGroceryList from '@salesforce/apex/RecipeController.generateGroceryList';
 
 const columns = [
     { label: 'Name', fieldName: 'Name' },

@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import addIngredient from '@salesforce/apex/RecipeHelper.addIngredient';
+import addIngredient from '@salesforce/apex/RecipeController.addIngredient';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'
 
 export default class RecipeEditor extends LightningElement {
