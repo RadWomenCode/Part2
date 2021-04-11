@@ -27,4 +27,11 @@ export default class recipeList extends LightningElement {
 	get hasResults() {
 		return (this.recipes.data.length > 0);
 	}
+
+
+	handleGroceryList(event) {
+		const recipeSelected = new CustomEvent('groceries', { detail: event.target.id });
+        // Dispatches the event.
+        this.dispatchEvent(recipeSelected);
+	}
 }

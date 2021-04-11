@@ -1,0 +1,12 @@
+<template>
+    <lightning-card  title="Groceries" icon-name="utility:food_and_drink">
+        <div if:true={ingredients}>
+            <lightning-datatable
+                key-field="Id"
+                data={ingredients}
+                hide-checkbox-column 
+                columns={columns}>
+            </lightning-datatable>
+        </div>
+    </lightning-card>
+</template>
