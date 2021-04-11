@@ -30,8 +30,49 @@ export default class recipeList extends LightningElement {
 
 
 	handleGroceryList(event) {
-		const recipeSelected = new CustomEvent('groceries', { detail: event.target.id });
+		console.log('handleGroceryList');
+		// Get just the 18 digit ID
+        let recipeId = event.target.id.substring(0, 18);
+		const recipeSelected = new CustomEvent('groceries', { detail: recipeId });
         // Dispatches the event.
         this.dispatchEvent(recipeSelected);
 	}
+
+	handleEditIngredients(event) {
+		let recipeId = event.target.id.substring(0, 18);
+		let recipeName = this.getRecipeName(recipeId);
+
+		const loadIngEditor = new CustomEvent('ingredients', { 
+			detail: {
+				recipeId:recipeId, 
+				recipeName:recipeName }
+			});
+        // Dispatches the event.
+        this.dispatchEvent(loadIngEditor);
+
+	}
+
+	loadScaling (event) {
+		console.log('load scaling');
+		let recipeId = event.target.id.substring(0, 18);
+		let recipeName = this.getRecipeName(recipeId);
+
+		const showScaled = new CustomEvent('scale', { 
+			detail: {
+				recipeId:recipeId, 
+				recipeName:recipeName }
+			});
+        // Dispatches the event.
+        this.dispatchEvent(showScaled);
+	}
+
+	getRecipeName(id) {
+		for (let r of this.recipes.data) {
+			// Get just the 18 digit ID
+			if (r.Id===id) {
+				return r.Name;
+			}
+		}
+	}
+
 }

@@ -1,3 +1,20 @@
 <template>
-    
+    <lightning-card  title="Add Ingredients" icon-name="utility:add">
+        <div if:true={recipeName}>
+            <div class="slds-m-around_medium">
+                <h1 class="slds-text-heading_medium">Adding Ingredients to: <strong>{recipeName}</strong></h1>
+                <lightning-input type="text" label="Ingredient" value={ingName} placeholder="enter ingredient name..." onchange={handleName}></lightning-input>
+                <lightning-input type="number" label="Measurement" step="0.1" placeholder="enter a number w/ up to one decimal..." onchange={handleMeasurement}></lightning-input>
+                <lightning-combobox
+                    name="measurementType"
+                    label="Measurement Type"
+                    value={value}
+                    placeholder="Select Type"
+                    options={typeOptions}
+                    onchange={handleTypeChange} ></lightning-combobox>
+            </div>
+            <lightning-button disabled={saveDisabled} variant="brand" label="Add Ingredient" onclick={addIngredient} class="slds-m-left_x-small"></lightning-button>
+        </div>
+        
+    </lightning-card>
 </template>

@@ -28,7 +28,11 @@
 										</div>
 									</div>
 								</div>
-								<lightning-button id={recipe.Id} variant="brand" label="Get Grocery List" onclick={handleGroceryList} class="slds-m-left_x-small"></lightning-button>
+								<lightning-button-group>
+									<lightning-button id={recipe.Id} variant="brand" label="Get Grocery List" onclick={handleGroceryList} class="slds-m-around_x-small"></lightning-button>
+									<lightning-button id={recipe.Id} variant="brand" label="Edit Ingredients" onclick={handleEditIngredients} class="slds-m-around_x-small"></lightning-button>
+									<lightning-button id={recipe.Id} variant="brand" label="Preview Recipe Scaling" onclick={loadScaling} class="slds-m-around_x-small"></lightning-button>
+								</lightning-button-group>
 							</lightning-card>
 							<!-- End recipe tile -->
 						</lightning-layout-item>

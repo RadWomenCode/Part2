@@ -1,15 +1,18 @@
 <template>
     <div class="slds-grid slds-wrap">
         <div class="slds-col slds-size_1-of-1">
-            <c-recipe-list ongroceries={handleGroceries}></c-recipe-list>
+            <c-recipe-list ongroceries={handleGroceries} oningredients={handleIngredients} onscale={handleScaling}></c-recipe-list>
         </div>
-        <div class="slds-col slds-grid slds-size_1-of-1 slds-var-m-top_medium">
-          <div class="slds-col slds-size_1-of-2">
-            <c-grocery-list></c-grocery-list>
-          </div>
-          <div class="slds-col slds-size_1-of-2">
-            <c-recipe-editor></c-recipe-editor>
-          </div>
+        <div class="slds-col slds-grid slds-size_1-of-1 slds-var-m-top_medium slds-gutters">
+            <div class="slds-col slds-size_1-of-3">
+                <c-grocery-list></c-grocery-list>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <c-recipe-editor></c-recipe-editor>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <c-recipe-scale-preview></c-recipe-scale-preview>
+            </div>
         </div>
     </div>
 </template>

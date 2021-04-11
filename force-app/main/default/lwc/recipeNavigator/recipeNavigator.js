@@ -3,9 +3,16 @@ import { LightningElement } from 'lwc';
 export default class RecipeNavigator extends LightningElement {
 
     handleGroceries(event) {
-        // Get just the 18 digit ID
-        let recipeId = event.detail.substring(0, 18);
         // Call the method on our grocery list component and pass in the selected recipe ID
-        this.template.querySelector('c-grocery-list').loadGroceries(recipeId);
+        this.template.querySelector('c-grocery-list').loadGroceries(event.detail);
+    }
+
+    handleIngredients(event) {
+        // Call the method on our recipe editor and pass in the selected recipe ID and name
+        this.template.querySelector('c-recipe-editor').initializeEditor(event.detail.recipeId, event.detail.recipeName);
+    }
+
+    handleScaling(event) {
+        this.template.querySelector('c-recipe-scale-preview').showScaling(event.detail.recipeId, event.detail.recipeName);
     }
 }

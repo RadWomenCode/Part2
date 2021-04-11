@@ -1,0 +1,20 @@
+<template>
+    
+    <lightning-card  title="Scaled Recipe Preview" icon-name="utility:magicwand">
+        <div if:true={recipeName}>
+            <lightning-input type="number" label={inputLabel} step="1" placeholder="enter a whole number..." onchange={handleServingChange} class="slds-m-left_x-small"></lightning-input>
+            <lightning-button disabled={buttonDisabled} variant="brand" label="Scale" onclick={handleScaling} class="slds-m-left_x-small"></lightning-button>
+
+            <div if:true={ingredients} class="slds-m-around_small">
+                <h1 class="slds-text-heading_medium">Showing <strong>{recipeName}</strong> scaled to: {desiredServings} servings</h1>
+                <lightning-datatable
+                    key-field="Id"
+                    data={ingredients}
+                    hide-checkbox-column 
+                    columns={columns}>
+                </lightning-datatable>
+            </div>
+        </div>
+    </lightning-card>
+
+</template>
