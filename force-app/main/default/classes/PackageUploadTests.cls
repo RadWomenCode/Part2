@@ -77,7 +77,7 @@ private class PackageUploadTests {
         Recipe rec2 = new Recipe(5,'Minutes','Test',4);
 
         Recipe__c recSobj = new Recipe__c();
-        recSobj.Name__c ='Test';
+        recSobj.Name ='Test';
         insert recSobj;
         Recipe rec3 = new Recipe(recSobj.Id);
 

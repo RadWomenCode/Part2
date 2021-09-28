@@ -152,6 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
     <label>Recipe</label>
     <nameField>
         <label>Recipe</label>
@@ -160,7 +161,6 @@
     </nameField>
     <pluralLabel>Recipes</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Servings__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Active_Time__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Active_Time_Units__c</searchResultsAdditionalFields>

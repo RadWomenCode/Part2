@@ -11,14 +11,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>All</fullName>
-                <default>false</default>
-                <label>All</label>
-            </value>
-            <value>
                 <fullName>Summer</fullName>
                 <default>false</default>
                 <label>Summer</label>
+            </value>
+            <value>
+                <fullName>All Season</fullName>
+                <default>false</default>
+                <label>All Season</label>
+            </value>
+            <value>
+                <fullName>Fall</fullName>
+                <default>false</default>
+                <label>Fall</label>
+            </value>
+            <value>
+                <fullName>Spring</fullName>
+                <default>false</default>
+                <label>Spring</label>
+            </value>
+            <value>
+                <fullName>Winter</fullName>
+                <default>false</default>
+                <label>Winter</label>
             </value>
         </valueSetDefinition>
     </valueSet>

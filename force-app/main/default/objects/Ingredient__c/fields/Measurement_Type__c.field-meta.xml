@@ -12,33 +12,39 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Value1</fullName>
-                <default>false</default>
-                <label>Value1</label>
-            </value>
-            <value>
                 <fullName>Cups</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Cups</label>
             </value>
             <value>
                 <fullName>Oz</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Oz</label>
             </value>
             <value>
                 <fullName>Tbl</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Tbl</label>
             </value>
             <value>
                 <fullName>Tsp</fullName>
                 <default>false</default>
-                <isActive>false</isActive>
                 <label>Tsp</label>
+            </value>
+            <value>
+                <fullName>Grams</fullName>
+                <default>false</default>
+                <label>Grams</label>
+            </value>
+            <value>
+                <fullName>Pounds</fullName>
+                <default>false</default>
+                <label>Pound(s)</label>
+            </value>
+            <value>
+                <fullName>Whole</fullName>
+                <default>false</default>
+                <label>Whole</label>
             </value>
         </valueSetDefinition>
     </valueSet>
