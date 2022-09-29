@@ -13,11 +13,21 @@ public with sharing class AccountTriggerHandler {
         this.oldAccountMap = oldAccountMap;
     }
 
-// TODO: Remove comments below and on line 104 to activate code
-/*
-
+    // TODO: Remove comments below and on line 110 to activate code
+    /*
     public void handleBeforeInsert(){
-        
+        setPrioritiesBeforeInsert();        
+    }
+
+    public void handleAfterInsert(){
+        handleNewAccountsAfterInsert();
+    }
+
+    public void handleAfterUpdate(){
+        handlePriorityChangeAfterUpdate();
+    }
+
+    private void setPrioritiesBeforeInsert() {
         for (Account a : this.newAccounts) {
             if (a.AnnualRevenue >= 5000000) {
                 a.CustomerPriority__c = 'Highest';
@@ -32,8 +42,7 @@ public with sharing class AccountTriggerHandler {
         //this is a before trigger, so our handler doesn't have to call DML
     }
 
-    public void handleAfterInsert(){
-        
+    private void handleNewAccountsAfterInsert() {
         Id runningUserId = UserInfo.getUserId();
 
         //Week 3 Demo: bulkify this code
@@ -48,7 +57,6 @@ public with sharing class AccountTriggerHandler {
             //Check for a Campaign that should be associated with the case
             //If this user has a campaign that is active of type Referral Program and this account has a source of Partner Referral, add the campaign
             //There should be only one per business rules.
-            
             if (a.AccountSource=='Partner Referral') {
                 List<Campaign> campaigns = [SELECT ID FROM Campaign WHERE OwnerId=:runningUserId AND IsActive=true AND Type='Referral Program'];
                 c.Campaign__c = campaigns[0].ID;
@@ -58,7 +66,7 @@ public with sharing class AccountTriggerHandler {
         }
     }
 
-    public void handleAfterUpdate(){
+    private void handlePriorityChangeAfterUpdate() {
         //First thing we do is query for all the opportunities on accounts involved in this trigger
         //The SOQL query below uses a nested query, this let's us pull back each acccount with a list of its opportunities attached.
         //We won't be covering nested queries in this class, but take a look and see if you can figure out how they work
@@ -98,9 +106,6 @@ public with sharing class AccountTriggerHandler {
         if (newOpportunities.size() > 0) {
             insert newOpportunities;
         }
-
     }
-
-*/
-
+    */
 }

@@ -1,4 +1,4 @@
-trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
+trigger AccountTrigger on Account (before insert, after insert, after update) {
     
     /***************This Trigger should only be run ONCE**********************************************/
     if (AccountTriggerHandler.hasExecuted) { //references a static variable on the handler
