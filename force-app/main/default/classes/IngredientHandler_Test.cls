@@ -48,6 +48,7 @@ private class IngredientHandler_Test {
 
         try {
             insert dupeIng;
+            System.assert(false, 'Exception expected');
         } catch (Exception e) {
             // Did we get the expected error?
             System.assertEquals(e.getTypeName(), 'System.DmlException');
