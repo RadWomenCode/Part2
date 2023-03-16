@@ -1,5 +1,5 @@
 @isTest
-private class IngredientUtil_Test {
+private class IngredientHandler_Test {
 
     
     @isTest static void testFlagNonDraftRecipe () {
