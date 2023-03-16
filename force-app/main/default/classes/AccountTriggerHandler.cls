@@ -1,7 +1,7 @@
 public with sharing class AccountTriggerHandler {
 
     // -----------Trigger Recursion Control------------------------------------------------------
-	public static boolean hasExecuted = false; //Has the Contact trigger already executed? -- The Trigger updates this variable when first run
+	static Boolean hasRunOnce = false; //Has the Account trigger already executed? -- The Handler updates this variable when first run in each context, then resets at the end. The BeforeInsert logic will run once and only once, the AfterInsert logic will run once and only once, etc.
     
     // -----------Trigger Handler Class Variables -----------------------------------------------
     List<Account> newAccounts;
@@ -13,18 +13,33 @@ public with sharing class AccountTriggerHandler {
         this.oldAccountMap = oldAccountMap;
     }
 
-    // TODO: Remove comments below and on line 110 to activate code
+    // TODO: Remove comments below and on line 125 to activate code
     /*
     public void handleBeforeInsert(){
-        setPrioritiesBeforeInsert();        
+        if(hasRunOnce) {
+            return;
+        }
+        hasRunOnce = true;
+        setPrioritiesBeforeInsert();
+        hasRunOnce = false;     
     }
 
     public void handleAfterInsert(){
+        if(hasRunOnce) {
+            return;
+        }
+        hasRunOnce = true;
         handleNewAccountsAfterInsert();
+        hasRunOnce = false;             
     }
 
     public void handleAfterUpdate(){
+        if(hasRunOnce) {
+            return;
+        }
+        hasRunOnce = true;
         handlePriorityChangeAfterUpdate();
+        hasRunOnce = false; 
     }
 
     private void setPrioritiesBeforeInsert() {
@@ -56,7 +71,7 @@ public with sharing class AccountTriggerHandler {
 
             //Check for a Campaign that should be associated with the case
             //If this user has a campaign that is active of type Referral Program and this account has a source of Partner Referral, add the campaign
-            //There should be only one per business rules.
+            //There should be only one per business rules.... but is there any potential issue you can see with the the code below???
             if (a.AccountSource=='Partner Referral') {
                 List<Campaign> campaigns = [SELECT ID FROM Campaign WHERE OwnerId=:runningUserId AND IsActive=true AND Type='Referral Program'];
                 c.Campaign__c = campaigns[0].ID;
@@ -108,4 +123,5 @@ public with sharing class AccountTriggerHandler {
         }
     }
     */
+    
 }

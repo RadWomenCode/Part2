@@ -1,13 +1,5 @@
 trigger AccountTrigger on Account (before insert, after insert, after update) {
     
-    /***************This Trigger should only be run ONCE**********************************************/
-    if (AccountTriggerHandler.hasExecuted) { //references a static variable on the handler
-        return;
-    } else if (Trigger.isAfter) {
-        //Once we're in the after context, set the static variable to true, so that we don't re-enter
-        AccountTriggerHandler.hasExecuted = true;
-    }
-
     //*********************************************************************************************** */
     // Instantiate the Handler and set Trigger records
     AccountTriggerHandler handler = new AccountTriggerHandler(Trigger.new, Trigger.oldMap);
