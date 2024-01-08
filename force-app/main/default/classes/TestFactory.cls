@@ -29,7 +29,7 @@ public class TestFactory {
         insert contacts;
     }
 
-    public static Opportunity[] generateOppsForAccount(id accountId, Decimal amount, Integer numOpps){
+    public static List<Opportunity> generateOppsForAccount(id accountId, Decimal amount, Integer numOpps){
         List<Opportunity> opps = new List<Opportunity>();
         for(Integer i = 0; i < numOpps; i++){
             Opportunity o = new Opportunity();

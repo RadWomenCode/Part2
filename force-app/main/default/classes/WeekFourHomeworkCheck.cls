@@ -3,7 +3,7 @@ private class WeekFourHomeworkCheck {
     @isTest
     static void testRequiredValuesPositive() {
         // name, active time/units, description and servings should all be reqired on final recipes
-        // if any of these are missing, it should be flagged as a draft.SELECT  FROM AcceptedEventRelation
+        // if any of these are missing, it should be flagged as a draft
         
         // create recipe without all required fields and verify it is marked as a draft
         Recipe__c rec = new Recipe__c (
@@ -51,6 +51,8 @@ private class WeekFourHomeworkCheck {
             Servings__c = 4
         );
 
+        testRecipes.add(rec1);
+
         // Create a Recipe that will be considered Medium
         Recipe__c rec2 = new Recipe__c (
             Name='ModerateTestRecipe',
@@ -74,7 +76,7 @@ private class WeekFourHomeworkCheck {
         testRecipes.add(rec3);
 
         Test.startTest();
-        Insert testRecipes;
+        insert testRecipes;
         Test.stopTest();
 
         // Query for inserted Recipes
