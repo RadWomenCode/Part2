@@ -7,7 +7,7 @@ public inherited sharing class RecipeController {
     }
 
     @AuraEnabled
-    public static void addIngredient(String ingredientName, Integer measurementAmount, String measurementType, ID recipeId){
+    public static void addIngredient(String ingredientName, Decimal measurementAmount, String measurementType, ID recipeId){
 	//Insert the ingredient
 
     }
