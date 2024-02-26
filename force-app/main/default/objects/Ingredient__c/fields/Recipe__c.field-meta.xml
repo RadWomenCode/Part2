@@ -5,7 +5,7 @@
     <label>Recipe</label>
     <referenceTo>Recipe__c</referenceTo>
     <relationshipLabel>Ingredient</relationshipLabel>
-    <relationshipName>Ingredient</relationshipName>
+    <relationshipName>Ingredients</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
     <trackFeedHistory>false</trackFeedHistory>

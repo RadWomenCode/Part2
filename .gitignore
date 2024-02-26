@@ -3,10 +3,11 @@
 # For useful gitignore templates see: https://github.com/github/gitignore
 
 .pmdCache
-.vscode/settings.json
+.vscode/
 
 # Salesforce cache
 .sfdx/
+.sf/
 
 # Logs
 logs
