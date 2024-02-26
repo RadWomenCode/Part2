@@ -1,4 +1,4 @@
-public with sharing class IngredientUtil {
+public with sharing class IngredientTriggerHandler {
 
     //Class Variables to store trigger context variables
     private String operationType; //Stores the Trigger.operationType in String format (e.g. BEFORE_INSERT, AFTER_INSERT etc.)
@@ -8,7 +8,7 @@ public with sharing class IngredientUtil {
 	private Map < ID, Ingredient__c > oldIngredientsMap; //Same as the oldIngredientsList but in map format  
 
     //Constructor that takes in the trigger context variables and assigns them to class variables
-    public IngredientUtil(String opType, List < Ingredient__c > ingList, Map < ID, Ingredient__c > ingMap, List < Ingredient__c > ingOldList, Map < ID, Ingredient__c > ingOldMap) {
+    public IngredientTriggerHandler(String opType, List < Ingredient__c > ingList, Map < ID, Ingredient__c > ingMap, List < Ingredient__c > ingOldList, Map < ID, Ingredient__c > ingOldMap) {
         this.operationType = opType;
         this.newIngredientsList = ingList;
         this.newIngredientsMap = ingMap;
@@ -105,10 +105,4 @@ public with sharing class IngredientUtil {
         // Lastly update the recipes
         update recipesToUpdate;
     }
-
-
-
-
-
-
 }

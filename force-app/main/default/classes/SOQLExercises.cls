@@ -13,7 +13,7 @@ public with sharing class SOQLExercises {
 
         // Let's query Accounts and look at the child contacts as well
         // Slightly different syntax and formatting here for declaring our list, remember, there are often multiple ways to declare objects and format queries
-        Account[] acctsWithContacts = [
+        List<Account> acctsWithContacts = [
 			SELECT Name, (SELECT FirstName,LastName FROM Contacts)
             FROM Account 
             WHERE AnnualRevenue > 1000000
@@ -28,14 +28,14 @@ public with sharing class SOQLExercises {
 
 		//1)
 		//Let's create a query to count how many opportunities we have that are over $100,000 dollars
-		//Since we're just getting a count, we can put the result directly intp an integer variable
+		//Since we're just getting a count, we can put the result directly into an integer variable
 		Integer bigOppsCount = [SELECT COUNT() FROM Opportunity WHERE Amount > 100000];
 		System.debug('We have ' + bigOppsCount + ' Opportunities over 100K');
 
 		//2)
 		//How about the average Opportunity Amount?
 		//Now we need to get the results back in a list of Aggregate Results, let's see what that looks like
-		AggregateResult[] avgAmountResult = [SELECT AVG(AMOUNT)aver FROM Opportunity];
+		List<AggregateResult> avgAmountResult = [SELECT AVG(AMOUNT)aver FROM Opportunity];
 		//*You may be wondering what the "aver" signifies, right after the AVG(AMOUNT) in the line above
 		//When you have a summary field you can give it a name, to make it easier to reference
 		//Check out further below, when we get just the average result specifically, we ask for it by passing in the alias ('aver')
@@ -50,7 +50,7 @@ public with sharing class SOQLExercises {
 
 		//3)
 		//What if we add a group by?
-		AggregateResult[] avgAmountResultGrouped = [
+		List<AggregateResult> avgAmountResultGrouped = [
 			SELECT Type, AVG(AMOUNT)aver 
 			FROM Opportunity 
 			GROUP BY Type
