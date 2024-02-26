@@ -31,7 +31,7 @@ public with sharing class Recipe {
     //Third Constructor, allows you to instantiate a new Recipe based on an existing Recipe__c SObject ID
     public Recipe(String sObjectId) {
 
-        Recipe__c recipeSObject = [SELECT ID, Active_Time__c,Active_Time_Units__c, Description__c, Duration__c, Season__c, Servings__c,Source__c FROM Recipe__c WHERE ID=:sObjectId];
+        Recipe__c recipeSObject = [SELECT ID, Active_Time__c, Active_Time_Units__c, Description__c, Name, Season__c, Servings__c,Source__c FROM Recipe__c WHERE ID=:sObjectId];
         // Assign the values
         this.sObjectID = recipeSObject.ID;
         this.activeTime = recipeSObject.Active_Time__c;

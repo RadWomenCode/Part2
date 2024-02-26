@@ -5,14 +5,14 @@ public class EmailManager {
     // Public method
     public static void sendMail(String address, String subject, String body) {        // Create an email message object
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        String[] toAddresses = new String[] {address};
+        List<String> toAddresses = new List<String>{address};
         mail.setToAddresses(toAddresses);
         mail.setSubject(subject);
         mail.setPlainTextBody(body);
         // Pass this email message to the built-in sendEmail method 
         // of the Messaging class
-        Messaging.SendEmailResult[] results = Messaging.sendEmail(
-            new Messaging.SingleEmailMessage[] { mail }
+        List<Messaging.SendEmailResult> results = Messaging.sendEmail(
+            new List<Messaging.SingleEmailMessage>{ mail }
         );
         
         // Call a helper method to inspect the returned results
@@ -20,7 +20,7 @@ public class EmailManager {
     }
     
     // Helper method
-    private static Boolean inspectResults(Messaging.SendEmailResult[] results) {
+    private static Boolean inspectResults(List<Messaging.SendEmailResult> results) {
         Boolean sendResult = true;
         
         // sendEmail returns an array of result objects.
