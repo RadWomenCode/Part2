@@ -149,7 +149,7 @@ private class WeekFourHomeworkCheck {
         insert usage;
 
         // Now update the recipe so that a review task is generated
-        rec.Contains_Allergins__c = true;
+        rec.Contains_Allergens__c = true;
         Test.startTest();
         update rec;
         Test.stopTest();
@@ -218,8 +218,8 @@ private class WeekFourHomeworkCheck {
 
         // Now update both recipes so that a review task is generated
         List<Recipe__c> updatedRecipes = new List<Recipe__c>();
-        rec.Contains_Allergins__c = true;
-        rec2.Contains_Allergins__c = true;
+        rec.Contains_Allergens__c = true;
+        rec2.Contains_Allergens__c = true;
         updatedRecipes.add(rec);
         updatedRecipes.add(rec2);
 

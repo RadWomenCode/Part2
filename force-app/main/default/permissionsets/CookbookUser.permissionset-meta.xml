@@ -91,7 +91,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Recipe__c.Contains_Allergins__c</field>
+        <field>Recipe__c.Contains_Allergens__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

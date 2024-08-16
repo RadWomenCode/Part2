@@ -4,7 +4,7 @@ public with sharing class IngredientTriggerHandler {
     }
 
     public static void afterInsert(List<Ingredient__c> newList) {
-        checkForAllergins(newList);
+        checkForAllergens(newList);
         flagChangesOnNonDraftRecipes(newList);
     }
 
@@ -12,35 +12,35 @@ public with sharing class IngredientTriggerHandler {
         List<Ingredient__c> oldList,
         List<Ingredient__c> newList
     ) {
-        checkForAllergins(newList);
+        checkForAllergens(newList);
     }
 
     // Methods with handler logic
-    private static void checkForAllergins(List<Ingredient__c> ingredientsList) {
-        // if the ingredient is a potential allergin, mark the recipe as containing allergins
-        List<ID> recipesWithAllergins = new List<ID>();
+    private static void checkForAllergens(List<Ingredient__c> ingredientsList) {
+        // if the ingredient is a potential allergen, mark the recipe as containing allergens
+        List<ID> recipesWithAllergens = new List<ID>();
 
-        // look for any known allergins, and grab their recipe id for updating
+        // look for any known allergens, and grab their recipe id for updating
         for (Ingredient__c ing : ingredientsList) {
             if (HelperFunctions.ingredientIsKnownAllergen(ing)) {
-                recipesWithAllergins.add(ing.Recipe__c);
+                recipesWithAllergens.add(ing.Recipe__c);
             }
         }
 
-        // If we found some allergins, query for those recipes only if they're not already marked
-        if (recipesWithAllergins.size() > 0) {
-            List<Recipe__c> recipesWithAllerginsButNotMarked = [
-                SELECT ID, Contains_Allergins__c
+        // If we found some allergens, query for those recipes only if they're not already marked
+        if (recipesWithAllergens.size() > 0) {
+            List<Recipe__c> recipesWithAllergensButNotMarked = [
+                SELECT ID, Contains_Allergens__c
                 FROM Recipe__c
                 WHERE
-                    ID IN :recipesWithAllergins
-                    AND Contains_Allergins__c = FALSE
+                    ID IN :recipesWithAllergens
+                    AND Contains_Allergens__c = FALSE
             ];
-            for (Recipe__c rec : recipesWithAllerginsButNotMarked) {
-                rec.Contains_Allergins__c = true;
+            for (Recipe__c rec : recipesWithAllergensButNotMarked) {
+                rec.Contains_Allergens__c = true;
             }
 
-            update recipesWithAllerginsButNotMarked;
+            update recipesWithAllergensButNotMarked;
         }
     }
 

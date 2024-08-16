@@ -40,7 +40,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Contains_Allergins__c</field>
+                <field>Contains_Allergens__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
