@@ -1,8 +1,8 @@
-@isTest
-private class IngredientHandler_Test {
+@IsTest
+private class IngredientTriggerHandler_Test {
 
     
-    @isTest static void testFlagNonDraftRecipe () {
+    @IsTest private static void testFlagNonDraftRecipe () {
         // when a new ingredient is added, non-draft recipes should be flagged for review. 
         
         // create recipe that is not a draft
@@ -24,7 +24,7 @@ private class IngredientHandler_Test {
     }
 
 
-    @isTest static void testDupeChecker(){
+    @IsTest private static void testDupeChecker(){
 
         // 1. Data Setup
         // create recipe
