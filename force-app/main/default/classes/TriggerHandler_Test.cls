@@ -1,4 +1,4 @@
-@isTest
+@IsTest
 /*
 Source Code: https://github.com/kevinohara80/sfdc-trigger-framework
 */
@@ -22,8 +22,8 @@ private class TriggerHandler_Test {
 
     // contexts tests
 
-    @isTest
-    static void testBeforeInsert() {
+    @IsTest
+    private static void testBeforeInsert() {
         beforeInsertMode();
         handler.run();
         System.assertEquals(
@@ -33,8 +33,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testBeforeUpdate() {
+    @IsTest
+    private static void testBeforeUpdate() {
         beforeUpdateMode();
         handler.run();
         System.assertEquals(
@@ -44,8 +44,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testBeforeDelete() {
+    @IsTest
+    private static void testBeforeDelete() {
         beforeDeleteMode();
         handler.run();
         System.assertEquals(
@@ -55,8 +55,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testAfterInsert() {
+    @IsTest
+    private static void testAfterInsert() {
         afterInsertMode();
         handler.run();
         System.assertEquals(
@@ -66,8 +66,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testAfterUpdate() {
+    @IsTest
+    private static void testAfterUpdate() {
         afterUpdateMode();
         handler.run();
         System.assertEquals(
@@ -77,8 +77,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testAfterDelete() {
+    @IsTest
+    private static void testAfterDelete() {
         afterDeleteMode();
         handler.run();
         System.assertEquals(
@@ -88,8 +88,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testAfterUndelete() {
+    @IsTest
+    private static void testAfterUndelete() {
         afterUndeleteMode();
         handler.run();
         System.assertEquals(
@@ -99,8 +99,8 @@ private class TriggerHandler_Test {
         );
     }
 
-    @isTest
-    static void testNonTriggerContext() {
+    @IsTest
+    private static void testNonTriggerContext() {
         try {
             handler.run();
             System.assert(false, 'the handler ran but should have thrown');
@@ -123,8 +123,8 @@ private class TriggerHandler_Test {
 
     // test bypass api
 
-    @isTest
-    static void testBypassAPI() {
+    @IsTest
+    private static void testBypassAPI() {
         afterUpdateMode();
 
         // test a bypass and run handler
@@ -190,8 +190,8 @@ private class TriggerHandler_Test {
 
     // instance method tests
 
-    @isTest
-    static void testLoopCount() {
+    @IsTest
+    private static void testLoopCount() {
         beforeInsertMode();
 
         // set the max loops to 2
@@ -258,8 +258,8 @@ private class TriggerHandler_Test {
         }
     }
 
-    @isTest
-    static void testLoopCountClass() {
+    @IsTest
+    private static void testLoopCountClass() {
         TriggerHandler.LoopCount lc = new TriggerHandler.LoopCount();
         System.assertEquals(5, lc.getMax(), 'max should be five on init');
         System.assertEquals(0, lc.getCount(), 'count should be zero on init');
@@ -294,8 +294,8 @@ private class TriggerHandler_Test {
 
     // private method tests
 
-    @isTest
-    static void testGetHandlerName() {
+    @IsTest
+    private static void testGetHandlerName() {
         System.assertEquals(
             'TestHandler',
             handler.getHandlerName(),
@@ -305,8 +305,8 @@ private class TriggerHandler_Test {
 
     // test virtual methods
 
-    @isTest
-    static void testVirtualMethods() {
+    @IsTest
+    private static void testVirtualMethods() {
         TriggerHandler h = new TriggerHandler();
         h.beforeInsert();
         h.beforeUpdate();

@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 private class WeekFourHomeworkCheck {
-    @isTest
-    static void testRequiredValuesPositive() {
+    @IsTest
+    private static void testRequiredValuesPositive() {
         // name, active time/units, description and servings should all be reqired on final recipes
         // if any of these are missing, it should be flagged as a draft
 
@@ -26,8 +26,8 @@ private class WeekFourHomeworkCheck {
         );
     }
 
-    @isTest
-    static void testRequiredValuesNegative() {
+    @IsTest
+    private static void testRequiredValuesNegative() {
         //If a recipe is inserted WITH all required fields, it should not automatically be marked as draft
         Recipe__c rec = new Recipe__c(
             Name = 'TestRecipe',
@@ -55,8 +55,8 @@ private class WeekFourHomeworkCheck {
         );
     }
 
-    @isTest
-    static void testComplexityPositive() {
+    @IsTest
+    private static void testComplexityPositive() {
         List<Recipe__c> testRecipes = new List<Recipe__c>();
         // Create a Recipe that will be considered Simple
         Recipe__c rec1 = new Recipe__c(
@@ -124,8 +124,8 @@ private class WeekFourHomeworkCheck {
         }
     }
 
-    @isTest
-    static void testReviewTaskPositive() {
+    @IsTest
+    private static void testReviewTaskPositive() {
         // create a recipe that meets the criteria of being non-draft and used in at least one cookbook
         // Create Cookbook
         Cookbook__c book = new Cookbook__c(Name = 'TestCookbook');
@@ -174,8 +174,8 @@ private class WeekFourHomeworkCheck {
         );
     }
 
-    @isTest
-    static void testReviewTaskPositiveNoMultiples() {
+    @IsTest
+    private static void testReviewTaskPositiveNoMultiples() {
         // create a recipe that meets the criteria of being non-draft and used in at least one cookbook
         // Create Cookbook
         Cookbook__c book = new Cookbook__c(Name = 'TestCookbook');

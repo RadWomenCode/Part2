@@ -1,6 +1,6 @@
 //Test Factory example from Trailhead: https://trailhead.salesforce.com/en/content/learn/modules/unit-testing-on-the-lightning-platform/generate-data-for-tests
 
-@isTest
+@IsTest
 public class TestFactory {
     public static Account getAccount(String name, Boolean doInsert) {
         Account a = new Account(name = name);

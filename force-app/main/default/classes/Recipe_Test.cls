@@ -1,8 +1,8 @@
-@isTest
+@IsTest
 private class Recipe_Test {
     //  create a test Recipe obect in memory, then call the create() method and validate that a corresponding SObject was created
-    @isTest
-    static void createRecipeSObjectTest() {
+    @IsTest
+    private static void createRecipeSObjectTest() {
         // Data Setup
         Recipe newRecipe = new Recipe(30, 'Minutes', 'Test Recipe', 4);
         // Add a description, now a required field (TODO - the constructor should take description!)
@@ -24,8 +24,8 @@ private class Recipe_Test {
 
     /* Create a Recipe object in memory as well as a corresponding SObject, change values on the Recipe in memory
      and Use the updateValues method to save those changes and verify results */
-    @isTest
-    static void updateRecipeValuesTest() {
+    @IsTest
+    private static void updateRecipeValuesTest() {
         // Data Setup
         Recipe newRecipe = new Recipe(30, 'Minutes', 'Test Recipe', 4);
         newRecipe.description = 'A test recipe';
@@ -47,8 +47,8 @@ private class Recipe_Test {
     }
 
     /* Validate that the Required fields are enforced*/
-    @isTest
-    static void descriptionRequiredTest() {
+    @IsTest
+    private static void descriptionRequiredTest() {
         // Data Setup -- Missing Description, should not be allowed to insert
         Recipe newRecipe = new Recipe(30, 'Minutes', 'Test Recipe', 4);
 
@@ -64,8 +64,8 @@ private class Recipe_Test {
     }
 
     /* Validate that a bad id throws an exception on instantiation */
-    @isTest
-    static void badIdTest() {
+    @IsTest
+    private static void badIdTest() {
         try {
             Recipe myRecipeWithBadId = new Recipe('ThisIsNotAGoodId');
         } catch (Exception e) {
