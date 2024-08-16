@@ -1,17 +1,17 @@
-//Used to queue the updating of a list of SObjects
+// Used to queue the updating of a list of SObjects
 
-//Usage:
-//ID jobID = System.enqueueJob(new AsynchObjectsUpdate(<SOBJECTSTOUPDATE>));
+// Usage:
+// ID jobID = System.enqueueJob(new AsynchObjectsUpdate(<SOBJECTSTOUPDATE>));
 
 public class AsynchObjectsUpdate implements Queueable {
     List<SObject> objectsToUpdate;
 
-    //list constructor
+    // list constructor
     public AsynchObjectsUpdate(List<SObject> objects) {
         this.objectsToUpdate = objects;
     }
 
-    //single object constructor
+    // single object constructor
     public AsynchObjectsUpdate(SObject objectToUpdate) {
         this.objectsToUpdate = new List<SObject>();
         this.objectsToUpdate.add(objectToUpdate);

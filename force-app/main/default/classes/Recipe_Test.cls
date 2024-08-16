@@ -12,7 +12,7 @@ private class Recipe_Test {
         newRecipe.create();
         Test.stopTest();
 
-        //Query for the created Recipe and validate results
+        // Query for the created Recipe and validate results
         List<Recipe__c> insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
         System.assertEquals(
             1,
@@ -31,14 +31,12 @@ private class Recipe_Test {
         newRecipe.description = 'A test recipe';
         newRecipe.create();
 
-        //TODO - This is only verifying that the name was updated.  What about the other fields that updateValues changes?
-        newRecipe.name = 'Changed Test Recipe Name';
-
         Test.startTest();
+        newRecipe.name = 'Changed Test Recipe Name';
         newRecipe.updateValues();
         Test.stopTest();
 
-        //Query for the created Recipe
+        // Query for the created Recipe
         List<Recipe__c> insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
         System.assertEquals(
             'Changed Test Recipe Name',

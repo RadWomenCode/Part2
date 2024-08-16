@@ -2,7 +2,7 @@
 // Date: 10/2019
 
 public with sharing class Ingredient {
-    //class variables defined here
+    // class variables defined here
     public Double measurement;
     public String measurementType;
     public String description;
@@ -13,7 +13,7 @@ public with sharing class Ingredient {
     public String type;
     public Id recipeId;
 
-    //First Constructor, allows you to instantiate a new Ingredient with no pre-set values
+    // First Constructor, allows you to instantiate a new Ingredient with no pre-set values
     public Ingredient() {
     }
 
@@ -30,7 +30,7 @@ public with sharing class Ingredient {
         this.name = name;
     }
 
-    //Third Constructor, allows you to instantiate a new Ingredient object based on an existing Ingredient__c SObject ID
+    // Third Constructor, allows you to instantiate a new Ingredient object based on an existing Ingredient__c SObject ID
     public Ingredient(String sObjectId) {
         Ingredient__c ingredientSObject = [
             SELECT
@@ -58,11 +58,11 @@ public with sharing class Ingredient {
         this.recipeId = ingredientSObject.Recipe__c;
     }
 
-    //public methods
+    // public methods
     public Boolean create() {
-        //First, verify the Ingredient does not already have an ID (it's not an existing record)
+        // First, verify the Ingredient does not already have an ID (it's not an existing record)
         if (String.isBlank(this.sObjectID)) {
-            //verify that we have required fields
+            // verify that we have required fields
             if (this.allRequiredFieldsValid()) {
                 Ingredient__c newIngredientSObject = new Ingredient__c();
                 newIngredientSObject.Name = this.Name;
@@ -74,10 +74,10 @@ public with sharing class Ingredient {
                 newIngredientSObject.description__c = this.description;
                 newIngredientSObject.Recipe__c = this.recipeId;
                 insert newIngredientSObject;
-                //assign the ID to the in-memory Ingredient
+                // assign the ID to the in-memory Ingredient
                 this.sObjectID = newIngredientSObject.ID;
 
-                // Call the asynchronout future method to load nutrition information from our external service
+                // Call the asynchronous future method to load nutrition information from our external service
                 Ingredient.getNutritionInformation(this.sObjectID, this.Name);
                 return true;
             } else {
@@ -89,9 +89,9 @@ public with sharing class Ingredient {
     }
 
     public Boolean updateValues() {
-        //First, verify the Ingredient has an SFID (it's and existing item that we can update)
+        // First, verify the Ingredient has an SFID (it's and existing item that we can update)
         if (String.isNotBlank(this.sObjectID)) {
-            //Validate all required fields
+            // Validate all required fields
             if (this.allRequiredFieldsValid()) {
                 // the line below is an example of instantiating an SObject, and passing the ID into the constructor
                 Ingredient__c updateIngredient = new Ingredient__c(
@@ -115,7 +115,7 @@ public with sharing class Ingredient {
         }
     }
 
-    //Private Methods
+    // Private Methods
     private Boolean allRequiredFieldsValid() {
         if (
             String.isNotBlank(this.name) &&
@@ -129,10 +129,10 @@ public with sharing class Ingredient {
         }
     }
 
-    /* Added in @Future sample callout - Melissa Hansen 10/2019
-
+    /*
     Call out to an external service that will get us nutrition information
-    The service is still being built so reults are currently mocked */
+    The service is still being built so results are currently mocked
+    */
     @future(callout=true)
     public static void getNutritionInformation(
         String ingredientSobjectId,

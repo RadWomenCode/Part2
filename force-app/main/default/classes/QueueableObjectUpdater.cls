@@ -1,24 +1,24 @@
-//Used to queue the updating of a list of SObjects
+// Used to queue the updating of a list of SObjects
 
-//Usage:
-//ID jobID = System.enqueueJob(new QueueableObjectUpdater(<SOBJECTSTOUPDATE>));
+// Usage:
+// ID jobID = System.enqueueJob(new QueueableObjectUpdater(<SOBJECTSTOUPDATE>));
 
 public class QueueableObjectUpdater implements Queueable {
     public List<SObject> objectsToUpdate;
     public List<SObject> objectsToQueueForUpdate;
 
-    //single object constructor
+    // single object constructor
     public QueueableObjectUpdater(SObject objectToUpdate) {
         this.objectsToUpdate = new List<SObject>();
         this.objectsToUpdate.add(objectToUpdate);
     }
 
-    //list constructor
+    // list constructor
     public QueueableObjectUpdater(List<SObject> objects) {
         Integer dmlRowLimit = Limits.getLimitDmlRows();
 
         if (this.objectsToUpdate.size() <= dmlRowLimit) {
-            //We are under the limit, no need to queue up another job, everything goes in the update list
+            // We are under the limit, no need to queue up another job, everything goes in the update list
             this.objectsToUpdate = objects;
         } else {
             // We are trying to update more records than we have in our limits. Do up to the limit, then queue the remainder for the next job

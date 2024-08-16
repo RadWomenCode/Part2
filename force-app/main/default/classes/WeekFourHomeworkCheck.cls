@@ -28,7 +28,7 @@ private class WeekFourHomeworkCheck {
 
     @IsTest
     private static void testRequiredValuesNegative() {
-        //If a recipe is inserted WITH all required fields, it should not automatically be marked as draft
+        // If a recipe is inserted WITH all required fields, it should not automatically be marked as draft
         Recipe__c rec = new Recipe__c(
             Name = 'TestRecipe',
             Active_Time__c = 1,

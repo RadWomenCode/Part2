@@ -1,5 +1,5 @@
 public with sharing class Recipe {
-    //class variables defined here
+    // class variables defined here
 
     public Decimal activeMinutes;
     public Double activeTime;
@@ -12,7 +12,7 @@ public with sharing class Recipe {
     public String source;
     public List<Ingredient__c> ingredientList;
 
-    //First Constructor, allows you to instantiate a new Recipe with no pre-set values
+    // First Constructor, allows you to instantiate a new Recipe with no pre-set values
     public Recipe() {
     }
 
@@ -30,7 +30,7 @@ public with sharing class Recipe {
         this.servingCount = servingCount;
     }
 
-    //Third Constructor, allows you to instantiate a new Recipe based on an existing Recipe__c SObject ID
+    // Third Constructor, allows you to instantiate a new Recipe based on an existing Recipe__c SObject ID
     public Recipe(String sObjectId) {
         Recipe__c recipeSObject = [
             SELECT
@@ -55,7 +55,7 @@ public with sharing class Recipe {
         this.servingCount = recipeSObject.Servings__c;
         this.source = recipeSObject.Source__c;
 
-        //Calculate the active minutes (if there is an active time value and a recognized unit)
+        // Calculate the active minutes (if there is an active time value and a recognized unit)
         if (recipeSObject.Active_Time__c > 0) {
             if (this.activeTimeUnits == 'minutes') {
                 this.activeMinutes = recipeSObject.Active_Time__c;
@@ -65,11 +65,11 @@ public with sharing class Recipe {
         }
     }
 
-    //public methods
+    // public methods
     public Boolean create() {
-        //First, verify the StockItem does not already have an ID (it's not an existing record)
+        // First, verify the StockItem does not already have an ID (it's not an existing record)
         if (String.isBlank(this.sObjectID)) {
-            //verify that we have required fields
+            // verify that we have required fields
             if (
                 this.allRequiredFieldsValid() &&
                 this.compliesWithAppropriateStyleRules()
@@ -83,7 +83,7 @@ public with sharing class Recipe {
                 newRecipeSObject.Servings__c = this.servingCount;
                 newRecipeSObject.Source__c = this.source;
                 insert newRecipeSObject;
-                //assign the ID to the in-memory Recipe
+                // assign the ID to the in-memory Recipe
                 this.sObjectID = newRecipeSObject.ID;
 
                 return true;
@@ -96,9 +96,9 @@ public with sharing class Recipe {
     }
 
     public Boolean updateValues() {
-        //First, verify the Recipe has an SFID (it's and existing item that we can update)
+        // First, verify the Recipe has an SFID (it's and existing item that we can update)
         if (String.isNotBlank(this.sObjectID)) {
-            //Validate all required fields
+            // Validate all required fields
             if (
                 this.allRequiredFieldsValid() &&
                 this.compliesWithAppropriateStyleRules()
@@ -128,14 +128,14 @@ public with sharing class Recipe {
     }
 
     public void generateGroceryList() {
-        //Based on the recipe and ingredients, generate a shopping list for all items
+        // Based on the recipe and ingredients, generate a shopping list for all items
     }
 
     public void scaleRecipeForServings(Integer desiredServings) {
         // based on the desired servings, scale the recipe ingredients up or down.
     }
 
-    //Private Methods
+    // Private Methods
     private Boolean allRequiredFieldsValid() {
         if (
             String.isNotBlank(this.name) &&
@@ -149,12 +149,12 @@ public with sharing class Recipe {
         }
     }
 
-    //Private Methods
+    // Private Methods
     private Boolean compliesWithAppropriateStyleRules() {
         // based on the stage of recipe, there are special requirements
         // A print-ready recipe must be more complete than a draft
 
-        //Not sure what the criteria is yet, so returning true for now
+        // Not sure what the criteria is yet, so returning true for now
         return true;
     }
 }
