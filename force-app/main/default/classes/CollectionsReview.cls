@@ -1,7 +1,5 @@
-public with sharing class CollectionsReview {    
-
+public with sharing class CollectionsReview {
     public static void introToLists() {
-
         //Let's declare and initalize a list of strings
         List<String> listOfStrings = new List<String>();
 
@@ -25,7 +23,11 @@ public with sharing class CollectionsReview {
 
         //Same idea with a list of strings
         List<String> firstNames = new List<String>{
-            'Stephanie', 'Pierre', 'Frank', 'Mary', 'Mario'
+            'Stephanie',
+            'Pierre',
+            'Frank',
+            'Mary',
+            'Mario'
         };
         System.debug('Contents of firstNames ' + firstNames);
 
@@ -33,12 +35,9 @@ public with sharing class CollectionsReview {
         System.debug('Value of 0 Index:' + firstNames[0]);
 
         //Let's do one together!  Using System.debug, print out the value Frank by referencing its index
-
-
     }
-									
-    public static void allAboutSets() {
 
+    public static void allAboutSets() {
         //Let's make a set
         Set<String> cuisineTypes = new Set<String>();
 
@@ -54,21 +53,25 @@ public with sharing class CollectionsReview {
         //we now have a set of the above cusines.  What's important to know is that they are not guaranteed to be in the same
         //order that we put them in: Sets are unordered
 
-
         //And if we try and add a duplicate to the list?
         //To start we have how many in the list?
-        System.debug('Size of our list before trying to re-add Balkan ' + cuisineTypes.size());
+        System.debug(
+            'Size of our list before trying to re-add Balkan ' +
+            cuisineTypes.size()
+        );
 
         cuisineTypes.add('Balkan');
 
-        System.debug('Size of our list after trying to re-add Balkan ' + cuisineTypes.size());
+        System.debug(
+            'Size of our list after trying to re-add Balkan ' +
+            cuisineTypes.size()
+        );
 
         //Run this method and check the debug log, no change in size!  Sets are unique, but you won't get an error when you re-ad a duplicate element.
         //Under the hood, when you try to add a duplicate, you're replacing it, but with the very same value
-
     }
-																								
-	public static void muchAdoAboutMaps() {
+
+    public static void muchAdoAboutMaps() {
         //Maps are incredibly useful, but they work a little differently than other collections.
 
         //From your reading you know that they are key-value pairs.  So each key, which must be unique, 'maps' to a value.
@@ -107,9 +110,5 @@ public with sharing class CollectionsReview {
             String restaurantName = restaurantsById.get(i);
             System.debug('restaurantName: ' + restaurantName);
         }
-
-	}
-		
+    }
 }
-																								
-																								

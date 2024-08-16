@@ -1,10 +1,9 @@
 @IsTest
 private class IngredientTriggerHandler_Test {
+    @IsTest
+    private static void testFlagNonDraftRecipe() {
+        // when a new ingredient is added, non-draft recipes should be flagged for review.
 
-    
-    @IsTest private static void testFlagNonDraftRecipe () {
-        // when a new ingredient is added, non-draft recipes should be flagged for review. 
-        
         // create recipe that is not a draft
         Recipe__c rec = new Recipe__c();
         rec.Name = 'Test Recipe 1';
@@ -17,15 +16,17 @@ private class IngredientTriggerHandler_Test {
         insert ing;
 
         // validate that the recipe is now marked as needs review
-        Recipe__c updatedRecipe = [SELECT ID, Needs_Review__c FROM Recipe__c WHERE ID=:rec.Id];
-        
+        Recipe__c updatedRecipe = [
+            SELECT ID, Needs_Review__c
+            FROM Recipe__c
+            WHERE ID = :rec.Id
+        ];
+
         System.assertEquals(true, updatedRecipe.Needs_Review__c);
-        
     }
 
-
-    @IsTest private static void testDupeChecker(){
-
+    @IsTest
+    private static void testDupeChecker() {
         // 1. Data Setup
         // create recipe
         Recipe__c rec = new Recipe__c();
@@ -55,7 +56,5 @@ private class IngredientTriggerHandler_Test {
         }
 
         Test.stopTest();
-
     }
-
 }
