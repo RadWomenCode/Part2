@@ -36,5 +36,9 @@
         <members>*</members>
         <name>CustomObject</name>
     </types>
-    <version>46.0</version>
+        <types>
+        <members>*</members>
+        <name>CustomApplication</name>
+    </types>
+    <version>59.0</version>
 </Package>
