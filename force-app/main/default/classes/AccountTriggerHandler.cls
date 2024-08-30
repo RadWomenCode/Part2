@@ -1,6 +1,6 @@
 public with sharing class AccountTriggerHandler {
     // -----------Trigger Recursion Control------------------------------------------------------
-    static Boolean hasRunOnce = false; //Has the Account trigger already executed? -- The Handler updates this variable when first run in each context, then resets at the end. The BeforeInsert logic will run once and only once, the AfterInsert logic will run once and only once, etc.
+    static Boolean hasRunOnce = false; // Has the Account trigger already executed? -- The Handler updates this variable when first run in each context, then resets at the end. The BeforeInsert logic will run once and only once, the AfterInsert logic will run once and only once, etc.
 
     // -----------Trigger Handler Class Variables -----------------------------------------------
     List<Account> newAccounts;
@@ -15,7 +15,7 @@ public with sharing class AccountTriggerHandler {
         this.oldAccountMap = oldAccountMap;
     }
 
-    // TODO: Remove comments below and on line 125 to activate code
+    // TODO: Remove comments below and on line 127 to activate code
     /*
     public void handleBeforeInsert(){
         if(hasRunOnce) {

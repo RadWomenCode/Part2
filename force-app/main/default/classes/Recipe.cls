@@ -96,7 +96,7 @@ public with sharing class Recipe {
     }
 
     public Boolean updateValues() {
-        // First, verify the Recipe has an SFID (it's and existing item that we can update)
+        // First, verify the Recipe has an Salesforce Id (it's an existing item that we can update)
         if (String.isNotBlank(this.sObjectID)) {
             // Validate all required fields
             if (

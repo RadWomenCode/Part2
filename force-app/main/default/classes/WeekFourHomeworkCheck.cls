@@ -69,7 +69,7 @@ private class WeekFourHomeworkCheck {
 
         testRecipes.add(rec1);
 
-        // Create a Recipe that will be considered Medium
+        // Create a Recipe that will be considered Moderate
         Recipe__c rec2 = new Recipe__c(
             Name = 'ModerateTestRecipe',
             Active_Time__c = 1,
@@ -80,7 +80,7 @@ private class WeekFourHomeworkCheck {
 
         testRecipes.add(rec2);
 
-        // Create a Recipe that will be considered Medium
+        // Create a Recipe that will be considered Difficult
         Recipe__c rec3 = new Recipe__c(
             Name = 'DifficultTestRecipe',
             Active_Time__c = 3,
@@ -127,6 +127,7 @@ private class WeekFourHomeworkCheck {
     @IsTest
     private static void testReviewTaskPositive() {
         // create a recipe that meets the criteria of being non-draft and used in at least one cookbook
+
         // Create Cookbook
         Cookbook__c book = new Cookbook__c(Name = 'TestCookbook');
         insert book;
@@ -177,6 +178,7 @@ private class WeekFourHomeworkCheck {
     @IsTest
     private static void testReviewTaskPositiveNoMultiples() {
         // create a recipe that meets the criteria of being non-draft and used in at least one cookbook
+
         // Create Cookbook
         Cookbook__c book = new Cookbook__c(Name = 'TestCookbook');
         insert book;

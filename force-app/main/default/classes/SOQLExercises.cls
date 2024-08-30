@@ -33,7 +33,7 @@ public with sharing class SOQLExercises {
 
     public static void funWithAggregates() {
         // 1)
-        // Let's create a query to count how many opportunities we have that are over $100,000 dollars
+        // Let's create a query to count how many opportunities we have that are over $100,000
         // Since we're just getting a count, we can put the result directly into an integer variable
         Integer bigOppsCount = [
             SELECT COUNT()
@@ -49,8 +49,8 @@ public with sharing class SOQLExercises {
             SELECT AVG(AMOUNT) aver
             FROM Opportunity
         ];
-        // *You may be wondering what the "aver" signifies, right after the AVG(AMOUNT) in the line above
-        // When you have a summary field you can give it a name, to make it easier to reference
+        // You may be wondering what the "aver" signifies, right after the AVG(AMOUNT) in the line above
+        // When you have a summary field you can give it an alias, to make it easier to reference
         // Check out further below, when we get just the average result specifically, we ask for it by passing in the alias ('aver')
 
         // This will print out the full avgAmountResult which is an array (list) of results
@@ -59,13 +59,13 @@ public with sharing class SOQLExercises {
             avgAmountResult
         );
 
-        // to get just the average out, we need to get it from the Aggregate Results list.  We will have only one entry
+        // To get just the average out, we need to get it from the Aggregate Results list. We will have only one entry
         // which is why we can reference it with [0], fetching just the first entry in the array
         Object avgAmount = avgAmountResult[0].get('aver');
         System.debug('Our Average Opp Amount is: ' + avgAmount);
 
         // 3)
-        // What if we add a group by?
+        // What if we add a GROUP BY?
         List<AggregateResult> avgAmountResultGrouped = [
             SELECT Type, AVG(AMOUNT) aver
             FROM Opportunity
@@ -73,12 +73,12 @@ public with sharing class SOQLExercises {
         ];
 
         // Let's loop through those results and print them out in a readable way
-        // You'll see that adding a group by, give us something like a table
+        // You'll see that adding a GROUP BY give us something like a table
         for (AggregateResult ag : avgAmountResultGrouped) {
             // To print out the whole result object:
             System.debug('ag: ' + ag);
-            // To dig into values, we do get calls on the aggregate result object, passing in a string for the field name
-            // The 'field name' in this case, is the name we gave it in the query, since it's a field we've generated essentially on the fly
+            // To dig into values, we do 'get' calls on the aggregate result object, passing in a string for the field name
+            // The 'field name' in this case, is the alias we gave it in the query, since it's a field we've generated essentially on the fly
             System.debug(
                 'For Opp Type ' +
                     ag.get('Type') +

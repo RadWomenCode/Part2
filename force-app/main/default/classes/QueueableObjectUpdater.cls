@@ -21,7 +21,7 @@ public class QueueableObjectUpdater implements Queueable {
             // We are under the limit, no need to queue up another job, everything goes in the update list
             this.objectsToUpdate = objects;
         } else {
-            // We are trying to update more records than we have in our limits. Do up to the limit, then queue the remainder for the next job
+            // We are trying to update more records than we have in our limits. Process up to the limit, then queue the remainder for the next job
             // each job will whittle the list down until we're done!
 
             // we will use a helper method to divide our big list into the first batch and future batch

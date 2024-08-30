@@ -89,7 +89,7 @@ public with sharing class Ingredient {
     }
 
     public Boolean updateValues() {
-        // First, verify the Ingredient has an SFID (it's and existing item that we can update)
+        // First, verify the Ingredient has a Salesforce Id (it's an existing item that we can update)
         if (String.isNotBlank(this.sObjectID)) {
             // Validate all required fields
             if (this.allRequiredFieldsValid()) {
@@ -189,7 +189,7 @@ public with sharing class Ingredient {
         }
     }
 
-    // Mock response for nutrition info.  Always returns the nutritional value of an apple=
+    // Mock response for nutrition info.  Always returns the nutritional value of an apple
     private static HttpResponse getNutritionInfo(HttpRequest incomingReq) {
         // This is a mocked response to test our architecture.
         // Will later be replaced by callouts to a real service
