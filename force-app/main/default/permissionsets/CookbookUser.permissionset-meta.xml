@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <applicationVisibilities>
-        <application>standard__LightningSales</application>
+        <application>RAD_Cookbook_Manager</application>
         <visible>true</visible>
     </applicationVisibilities>
     <fieldPermissions>
@@ -91,7 +91,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Recipe__c.Contains_Allergins__c</field>
+        <field>Recipe__c.Contains_Allergens__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

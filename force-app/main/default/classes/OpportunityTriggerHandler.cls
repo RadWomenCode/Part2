@@ -14,8 +14,8 @@ public with sharing class OpportunityTriggerHandler extends TriggerHandler {
         System.debug('in before opp update');
         // Update needs attention based on closed status and date (yes, could be done declaratively---Demo purposes)
         Date today = System.today();
-        for (Opportunity opp: this.newOppMap.values()) {
-            if (!opp.isClosed && opp.CloseDate<=today) {
+        for (Opportunity opp : this.newOppMap.values()) {
+            if (!opp.isClosed && opp.CloseDate <= today) {
                 opp.Needs_Attention__c = true;
             }
         }
@@ -25,7 +25,4 @@ public with sharing class OpportunityTriggerHandler extends TriggerHandler {
         System.debug('in after opp update');
         // Some afterUpdate logic that we only want to run once
     }
-  
-  
-  
 }

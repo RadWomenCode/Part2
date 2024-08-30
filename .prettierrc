@@ -1,5 +1,8 @@
 {
+  "plugins": ["prettier-plugin-apex"],
   "trailingComma": "none",
+  "tabWidth": 4,
+  "useTabs": false,
   "overrides": [
     {
       "files": "**/lwc/**/*.html",
