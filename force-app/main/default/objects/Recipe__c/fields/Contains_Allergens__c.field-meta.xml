@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Contains_Allergins__c</fullName>
+    <fullName>Contains_Allergens__c</fullName>
     <defaultValue>false</defaultValue>
     <externalId>false</externalId>
-    <label>Contains Allergins</label>
+    <label>Contains Allergens</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>
