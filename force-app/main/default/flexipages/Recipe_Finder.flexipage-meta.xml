@@ -4,6 +4,7 @@
         <itemInstances>
             <componentInstance>
                 <componentName>recipeList</componentName>
+                <identifier>recipeList</identifier>
             </componentInstance>
         </itemInstances>
         <name>main</name>
