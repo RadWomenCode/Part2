@@ -137,6 +137,28 @@ public with sharing class SOQLExercises {
         List<Account> anotherAccountList = accountMap.values();
     }
 
+    /* To run this method:
+       SOQLExercises.dynamicSOQL('Complexity__c', 'Simple');
+
+       This method only works with text and picklist fields. What happens if we pass in a boolean field?
+       SOQLExercises.dynamicSOQL('Contains_Allergens__c', 'false');
+
+       Or a field that doesn't exist?
+       SOQLExercises.dynamicSOQL('Author_Name__c', 'Julia Child');
+    */
+    public static void dynamicSOQL(String field, String value) {
+        // Construct a query string using the parameters
+        String queryString =
+            'SELECT Name FROM Recipe__c WHERE ' +
+            field +
+            ' = \'' +
+            value +
+            '\'';
+
+        List<Recipe__c> recipes = Database.query(queryString);
+        System.debug(recipes);
+    }
+
     public static void SOSL() {
         // Let's do a search accross Accounts and Contacts where we look for records that reference 'United'
 

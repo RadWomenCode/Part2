@@ -15,5 +15,4 @@
     <tabs>Recipe_Usage__c</tabs>
     <tabs>Recipe_Finder</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>RAD_Cookbook_Manager_UtilityBar</utilityBar>
 </CustomApplication>
