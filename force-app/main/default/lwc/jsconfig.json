@@ -5,6 +5,9 @@
         "paths": {
             "c/hello": [
                 "hello/hello.js"
+            ],
+            "c/*": [
+                "*"
             ]
         }
     },

@@ -82,38 +82,29 @@ public with sharing class IngredientTriggerHandler {
     private static void flagChangesOnNonDraftRecipes(
         List<Ingredient__c> ingredientsList
     ) {
-        // get a list of the non-review recipes, if any, with ingredients being added
+        // Create a list of recipe ids related to the ingredients
         List<ID> recipeIds = new List<ID>();
 
         for (Ingredient__c i : ingredientsList) {
             recipeIds.add(i.Recipe__c);
         }
 
-        // Query for parent recipes that are not drafts status and assign to a map for easy access
-        Map<ID, Recipe__c> nonDraftRecipes = new Map<ID, Recipe__c>(
-            [
-                SELECT ID, Draft__c
-                FROM Recipe__c
-                WHERE ID IN :recipeIds AND Draft__c != TRUE
-            ]
-        );
+        // Query for parent recipes that are not draft and not already marked as needing review
+        List<Recipe__c> nonDraftRecipes = [
+            SELECT Id
+            FROM Recipe__c
+            WHERE
+                Id IN :recipeIds
+                AND Draft__c = FALSE
+                AND Needs_Review__c = FALSE
+        ];
 
-        // List to hold Recipes that need updating
-        List<Recipe__c> recipesToUpdate = new List<Recipe__c>();
-        // Map < ID, Account > accountMap = new Map < ID, Account >([SELECT ID, Name, AnnualRevenue FROM Account WHERE AnnualRevenue > 1000000]);
-        for (Ingredient__c i : ingredientsList) {
-            Recipe__c parentRecipe = nonDraftRecipes.get(i.Recipe__c); // If the recipe was not in the query, because it was not a draft, this will be null
-            // Check that there is a parent recipe and that the recipe isn't already in the list to update
-            if (
-                parentRecipe != null &&
-                recipesToUpdate.contains(parentRecipe) != true
-            ) {
-                parentRecipe.Needs_Review__c = true;
-                recipesToUpdate.add(parentRecipe);
-            }
+        // Go through each recipe and mark as needing review
+        for (Recipe__c recipe : nonDraftRecipes) {
+            recipe.Needs_Review__c = true;
         }
 
         // Lastly update the recipes
-        update recipesToUpdate;
+        update nonDraftRecipes;
     }
 }
