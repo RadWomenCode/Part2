@@ -12,7 +12,7 @@ public with sharing class CollectionsReview {
         System.debug('Size of listOfStrings: ' + listOfStrings.size());
 
         // What's this whole .size() business?  Part of the Apex language is the built-in methods provided. We'll talk
-        // more about what methods are later, but for now, know that they are bits of funtionality you can use to do
+        // more about what methods are later, but for now, know that they are bits of functionality you can use to do
         // fun stuff like get the size of a list
 
         // Let's declare a list and add values all in the same line
@@ -53,17 +53,17 @@ public with sharing class CollectionsReview {
         // We now have a set of the above cusines. What's important to know is that they are not guaranteed to be in the same
         // order that we put them in: Sets are unordered
 
-        // And if we try and add a duplicate to the list?
-        // To start we have how many in the list?
+        // And if we try and add a duplicate to the set?
+        // To start we have how many in the set?
         System.debug(
-            'Size of our list before trying to re-add Balkan ' +
+            'Size of our set before trying to re-add Balkan ' +
             cuisineTypes.size()
         );
 
         cuisineTypes.add('Balkan');
 
         System.debug(
-            'Size of our list after trying to re-add Balkan ' +
+            'Size of our set after trying to re-add Balkan ' +
             cuisineTypes.size()
         );
 
