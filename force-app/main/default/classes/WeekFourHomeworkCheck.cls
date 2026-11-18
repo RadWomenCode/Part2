@@ -19,8 +19,7 @@ private class WeekFourHomeworkCheck {
             LIMIT 1
         ];
 
-        System.assertEquals(
-            true,
+        Assert.isTrue(
             insertedRecipe.Draft__c,
             'A Recipe missing required fields must be marked as Draft'
         );
@@ -48,8 +47,7 @@ private class WeekFourHomeworkCheck {
             LIMIT 1
         ];
 
-        System.assertEquals(
-            false,
+        Assert.isFalse(
             insertedRecipe.Draft__c,
             'A Recipe with all required fields should NOT be marked as Draft'
         );
@@ -103,19 +101,19 @@ private class WeekFourHomeworkCheck {
 
         for (Recipe__c rec : recipes) {
             if (rec.Name == 'SimpleTestRecipe') {
-                System.assertEquals(
+                Assert.areEqual(
                     'Simple',
                     rec.Complexity__c,
                     'Recipe should be marked as Simple'
                 );
             } else if (rec.Name == 'ModerateTestRecipe') {
-                System.assertEquals(
+                Assert.areEqual(
                     'Moderate',
                     rec.Complexity__c,
                     'Recipe should be marked as Moderate'
                 );
             } else if (rec.Name == 'DifficultTestRecipe') {
-                System.assertEquals(
+                Assert.areEqual(
                     'Difficult',
                     rec.Complexity__c,
                     'Recipe should be marked as Difficult'
@@ -158,17 +156,17 @@ private class WeekFourHomeworkCheck {
         // query for the task
         List<Task> taskList = [SELECT ID, WhatId, ActivityDate FROM Task];
 
-        System.assertEquals(
+        Assert.areEqual(
             1,
             taskList.size(),
             'There should be one task to review the cookbook.'
         );
-        System.assertEquals(
+        Assert.areEqual(
             book.Id,
             taskList[0].WhatId,
             'The task should be on the Cookbook record.'
         );
-        System.assertEquals(
+        Assert.areEqual(
             System.today().addDays(7),
             taskList[0].ActivityDate,
             'The task should be due in one week.'
@@ -232,7 +230,7 @@ private class WeekFourHomeworkCheck {
         // query for the task
         List<Task> taskList = [SELECT ID, WhatId FROM Task];
 
-        System.assertEquals(
+        Assert.areEqual(
             1,
             taskList.size(),
             'There should only be one task to review the cookbook.'
