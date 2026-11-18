@@ -14,12 +14,12 @@ private class Recipe_Test {
 
         // Query for the created Recipe and validate results
         List<Recipe__c> insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
-        System.assertEquals(
+        Assert.areEqual(
             1,
             insertedRecipeList.size(),
             'One Recipe SObject Expected'
         );
-        System.assertEquals('Test Recipe', insertedRecipeList[0].Name);
+        Assert.areEqual('Test Recipe', insertedRecipeList[0].Name);
     }
 
     /* Create a Recipe object in memory as well as a corresponding SObject, change values on the Recipe in memory
@@ -38,10 +38,7 @@ private class Recipe_Test {
 
         // Query for the created Recipe
         List<Recipe__c> insertedRecipeList = [SELECT ID, Name FROM Recipe__c];
-        System.assertEquals(
-            'Changed Test Recipe Name',
-            insertedRecipeList[0].Name
-        );
+        Assert.areEqual('Changed Test Recipe Name', insertedRecipeList[0].Name);
     }
 
     /* Validate that the Required fields are enforced*/
@@ -54,8 +51,7 @@ private class Recipe_Test {
         Boolean insertSuccessful = newRecipe.create();
         Test.stopTest();
 
-        System.assertEquals(
-            false,
+        Assert.isFalse(
             insertSuccessful,
             'Insert should not be allowed without description'
         );
@@ -68,7 +64,7 @@ private class Recipe_Test {
             Recipe myRecipeWithBadId = new Recipe('ThisIsNotAGoodId');
         } catch (Exception e) {
             System.debug('exception : ' + e);
-            System.assertEquals('System.QueryException', e.getTypeName());
+            Assert.areEqual('System.QueryException', e.getTypeName());
         }
     }
 }

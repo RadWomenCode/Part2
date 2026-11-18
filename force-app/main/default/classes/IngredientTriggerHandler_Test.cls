@@ -22,7 +22,7 @@ private class IngredientTriggerHandler_Test {
             WHERE ID = :rec.Id
         ];
 
-        System.assertEquals(true, updatedRecipe.Needs_Review__c);
+        Assert.isTrue(updatedRecipe.Needs_Review__c);
     }
 
     @IsTest
@@ -49,10 +49,10 @@ private class IngredientTriggerHandler_Test {
 
         try {
             insert dupeIng;
-            System.assert(false, 'Exception expected');
+            Assert.fail('Exception expected');
         } catch (Exception e) {
             // Did we get the expected error?
-            System.assertEquals(e.getTypeName(), 'System.DmlException');
+            Assert.areEqual('System.DmlException', e.getTypeName());
         }
 
         Test.stopTest();
