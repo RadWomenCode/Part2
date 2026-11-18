@@ -1,10 +1,17 @@
 {
-  "orgName": "mprcic Company",
+  "orgName": "RAD Part 2 Scratch Org",
   "edition": "Developer",
+  "hasSampleData": true,
   "features": [],
   "settings": {
-    "orgPreferenceSettings": {
-      "s1DesktopEnabled": true
+    "apexSettings": {
+      "enableCompileOnDeploy": true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "userManagementSettings": {
+      "permsetsInFieldCreation": true
     }
   }
 }
