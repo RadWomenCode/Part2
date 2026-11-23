@@ -1,78 +1,99 @@
-// Adapted from the Trailhead Bear Tracking App  https://github.com/trailheadapps/build-apps-with-lwc
+import { LightningElement, wire } from "lwc";
+import searchRecipes from "@salesforce/apex/RecipeController.searchRecipes";
 
-import { LightningElement, wire } from 'lwc';
-import BOOK_IMG from '@salesforce/resourceUrl/CookbookSilhouette';
+// How long to wait after the user stops typing before we search (in milliseconds)
+const SEARCH_DELAY_MS = 300;
 
-/** RecipeController.searchRecipes(searchTerm) Apex method */
-import searchRecipes from '@salesforce/apex/RecipeController.searchRecipes';
-export default class recipeList extends LightningElement {
-    // Expose the static resource URL for use in the template
-    bookSilhouette = BOOK_IMG;
+// Shorter labels for the Active Time Units picklist values
+const TIME_UNIT_LABELS = { Minutes: "min", Hours: "hr" };
 
-	searchTerm = '';
-	@wire(searchRecipes, {searchTerm: '$searchTerm'})
-	recipes = [];
+export default class RecipeList extends LightningElement {
+    searchTerm = "";
+    selectedRecipeId;
+    searchTimeout;
 
-	handleSearchTermChange(event) {
-		// Debouncing this method: do not update the reactive property as
-		// long as this function is being called within a delay of 300 ms.
-		// This is to avoid a very large number of Apex method calls.
-		window.clearTimeout(this.delayTimeout);
-		const searchTerm = event.target.value;
-		// eslint-disable-next-line @lwc/lwc/no-async-operation
-		this.delayTimeout = setTimeout(() => {
-			this.searchTerm = searchTerm;
-		}, 300);
-	}
-	get hasResults() {
-		return (this.recipes.data.length > 0);
-	}
+    // Calls RecipeController.searchRecipes and runs it again whenever searchTerm changes.
+    // The '$' in '$searchTerm' tells LWC to watch that property.
+    // The result is an object with two properties: data (the recipes) and error.
+    @wire(searchRecipes, { searchTerm: "$searchTerm" })
+    recipes;
 
+    // ---------- Getters used by the template ----------
 
-	handleGroceryList(event) {
-		console.log('handleGroceryList');
-		// Get just the 18 digit ID
-        let recipeId = event.target.id.substring(0, 18);
-		const recipeSelected = new CustomEvent('groceries', { detail: recipeId });
-        // Dispatches the event.
-        this.dispatchEvent(recipeSelected);
-	}
+    get hasError() {
+        return Boolean(this.recipes.error);
+    }
 
-	handleEditIngredients(event) {
-		let recipeId = event.target.id.substring(0, 18);
-		let recipeName = this.getRecipeName(recipeId);
+    get errorMessage() {
+        return this.recipes.error?.body?.message;
+    }
 
-		const loadIngEditor = new CustomEvent('ingredients', { 
-			detail: {
-				recipeId:recipeId, 
-				recipeName:recipeName }
-			});
-        // Dispatches the event.
-        this.dispatchEvent(loadIngEditor);
+    // True until the first response (data or error) comes back
+    get isLoading() {
+        return !this.recipes.data && !this.recipes.error;
+    }
 
-	}
+    get hasRecipes() {
+        return this.recipes.data?.length > 0;
+    }
 
-	loadScaling (event) {
-		console.log('load scaling');
-		let recipeId = event.target.id.substring(0, 18);
-		let recipeName = this.getRecipeName(recipeId);
+    get resultsSummary() {
+        const count = this.recipes.data.length;
+        return `${count} ${count === 1 ? "recipe" : "recipes"}`;
+    }
 
-		const showScaled = new CustomEvent('scale', { 
-			detail: {
-				recipeId:recipeId, 
-				recipeName:recipeName }
-			});
-        // Dispatches the event.
-        this.dispatchEvent(showScaled);
-	}
+    // Turns each Recipe__c record into a simple object the template can display
+    get recipeTiles() {
+        return this.recipes.data.map((recipe) => {
+            return {
+                id: recipe.Id,
+                name: recipe.Name,
+                complexity: recipe.Complexity__c,
+                season: recipe.Season__c,
+                activeTime: this.formatActiveTime(recipe),
+                isSelected: recipe.Id === this.selectedRecipeId
+            };
+        });
+    }
 
-	getRecipeName(id) {
-		for (let r of this.recipes.data) {
-			// Get just the 18 digit ID
-			if (r.Id===id) {
-				return r.Name;
-			}
-		}
-	}
+    // ---------- Event handlers ----------
 
+    handleSearchChange(event) {
+        const newSearchTerm = event.target.value;
+
+        // Wait for the user to pause typing, so we don't call Apex on every keystroke
+        clearTimeout(this.searchTimeout);
+        // eslint-disable-next-line @lwc/lwc/no-async-operation
+        this.searchTimeout = setTimeout(() => {
+            this.searchTerm = newSearchTerm;
+        }, SEARCH_DELAY_MS);
+    }
+
+    handleRecipeClick(event) {
+        // The id comes from the data-recipe-id attribute on the clicked button
+        const recipeId = event.currentTarget.dataset.recipeId;
+        const recipe = this.recipes.data.find((item) => item.Id === recipeId);
+
+        this.selectedRecipeId = recipeId;
+
+        // Tell the parent component which recipe was picked
+        this.dispatchEvent(
+            new CustomEvent("recipeselect", {
+                detail: { recipeId, recipeName: recipe.Name }
+            })
+        );
+    }
+
+    // ---------- Helpers ----------
+
+    formatActiveTime(recipe) {
+        if (!recipe.Active_Time__c) {
+            return "";
+        }
+        const unit =
+            TIME_UNIT_LABELS[recipe.Active_Time_Units__c] ??
+            recipe.Active_Time_Units__c ??
+            "";
+        return `${recipe.Active_Time__c} ${unit}`.trim();
+    }
 }

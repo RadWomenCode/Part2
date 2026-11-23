@@ -1,20 +1,53 @@
 <template>
-    <lightning-card  title="Add Ingredients" icon-name="utility:add">
-        <div if:true={recipeName}>
-            <div class="slds-m-around_medium">
-                <h1 class="slds-text-heading_medium">Adding Ingredients to: <strong>{recipeName}</strong></h1>
-                <lightning-input type="text" label="Ingredient" value={ingName} placeholder="enter ingredient name..." onchange={handleName}></lightning-input>
-                <lightning-input type="number" label="Measurement" step="0.1" placeholder="enter a number w/ up to one decimal..." onchange={handleMeasurement}></lightning-input>
-                <lightning-combobox
-                    name="measurementType"
-                    label="Measurement Type"
-                    value={value}
-                    placeholder="Select Type"
-                    options={typeOptions}
-                    onchange={handleTypeChange} ></lightning-combobox>
+    <div class="slds-var-p-around_medium">
+        <p class="slds-var-m-bottom_medium">
+            Add an ingredient to <strong>{recipeName}</strong>
+        </p>
+
+        <div class="slds-grid slds-wrap slds-gutters_small">
+            <div class="slds-col slds-size_1-of-1 slds-var-m-bottom_small">
+                <lightning-input
+                    label="Ingredient"
+                    placeholder="For example, All-purpose flour"
+                    value={ingredientName}
+                    required
+                    onchange={handleNameChange}
+                ></lightning-input>
             </div>
-            <lightning-button disabled={saveDisabled} variant="brand" label="Add Ingredient" onclick={addIngredient} class="slds-m-left_x-small"></lightning-button>
+            <div
+                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-m-bottom_small"
+            >
+                <lightning-input
+                    type="number"
+                    label="Amount"
+                    placeholder="For example, 1.5"
+                    step="0.1"
+                    min="0"
+                    value={measurement}
+                    required
+                    onchange={handleMeasurementChange}
+                ></lightning-input>
+            </div>
+            <div
+                class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-m-bottom_small"
+            >
+                <lightning-combobox
+                    label="Unit"
+                    placeholder="Select a unit"
+                    options={measurementTypeOptions}
+                    value={measurementType}
+                    required
+                    onchange={handleMeasurementTypeChange}
+                ></lightning-combobox>
+            </div>
         </div>
-        
-    </lightning-card>
+
+        <lightning-button
+            variant="brand"
+            label="Add Ingredient"
+            icon-name="utility:add"
+            disabled={isAddDisabled}
+            onclick={handleAddIngredient}
+        ></lightning-button>
+    </div>
 </template>

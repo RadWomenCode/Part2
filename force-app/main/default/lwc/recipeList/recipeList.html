@@ -1,57 +1,99 @@
 <template>
-	<lightning-card title="Recipes" icon-name="utility:food_and_drink">
-		<div class="slds-card__body_inner">
-			<!-- Start recipe list -->
-			<template if:true={recipes.data}>
-                <lightning-input type="search"
-                    onchange={handleSearchTermChange}
-                    variant="label-hidden"
-                    class="slds-var-m-bottom_small"
-                    label="Search"
-                    placeholder="Search for recipes"
-                    value={searchTerm}>
-                </lightning-input>
-				<lightning-layout multiple-rows="true" pull-to-boundary="small">
-					<template for:each={recipes.data} for:item="recipe">
-						<lightning-layout-item key={recipe.Id} size="3" class="slds-var-p-around_x-small">
-							<!-- Start recipe tile -->
-							<lightning-card title={recipe.Name} class="recipe-tile">
-								<div class="slds-var-p-horizontal_small recipe-tile-body">
-									<div class="slds-media">
-										<div class="slds-media__figure">
-											<img src={bookSilhouette} alt="Cookbook" class="book-silhouette"/>
-										</div>
-										<div class="slds-media__body">
-											<p class="slds-var-m-bottom_xx-small">{recipe.Complexity__c}</p>
-											<p class="slds-var-m-bottom_xx-small">{recipe.Season__c}</p>
-											<p class="slds-var-m-bottom_xx-small">{recipe.Active_Time__c} {recipe.Active_Time_Units__c}</p>
-										</div>
-									</div>
-								</div>
-								<lightning-button-group>
-									<lightning-button id={recipe.Id} variant="brand" label="Get Grocery List" onclick={handleGroceryList} class="slds-m-around_x-small"></lightning-button>
-									<lightning-button id={recipe.Id} variant="brand" label="Edit Ingredients" onclick={handleEditIngredients} class="slds-m-around_x-small"></lightning-button>
-									<lightning-button id={recipe.Id} variant="brand" label="Preview Recipe Scaling" onclick={loadScaling} class="slds-m-around_x-small"></lightning-button>
-								</lightning-button-group>
-							</lightning-card>
-							<!-- End recipe tile -->
-						</lightning-layout-item>
-					</template>
-                </lightning-layout>
-                <!-- No recipes found -->
-                <template if:false={hasResults}>
-                    <div class="slds-align_absolute-center slds-var-m-vertical_small">
-                        Oh dear, we did not find results...
+    <lightning-card title="Recipes" icon-name="standard:recipe">
+        <div class="slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <!-- Search box -->
+            <lightning-input
+                type="search"
+                label="Search recipes"
+                variant="label-hidden"
+                placeholder="Search recipes by name"
+                onchange={handleSearchChange}
+            ></lightning-input>
+
+            <!-- Loading, error, results, or empty state: only one of these shows at a time -->
+            <template lwc:if={hasError}>
+                <div
+                    class="slds-scoped-notification slds-media slds-media_center slds-theme_error slds-var-m-top_small"
+                    role="alert"
+                >
+                    <div class="slds-media__figure">
+                        <lightning-icon
+                            icon-name="utility:error"
+                            variant="inverse"
+                            size="x-small"
+                        ></lightning-icon>
                     </div>
-                </template>
-			</template>
-			<!-- End recipe list -->
-			<!-- Data failed to load -->
-			<template if:true={error}>
-				<div class="slds-text-color_error">
-					An error occurred while loading the recipe list
-				</div>
-			</template>
-		</div>
-	</lightning-card>
+                    <div class="slds-media__body">
+                        <p>We couldn't load the recipes. {errorMessage}</p>
+                    </div>
+                </div>
+            </template>
+            <template lwc:elseif={isLoading}>
+                <div class="slds-is-relative slds-var-p-around_xx-large">
+                    <lightning-spinner
+                        alternative-text="Loading recipes"
+                        size="small"
+                    ></lightning-spinner>
+                </div>
+            </template>
+            <template lwc:elseif={hasRecipes}>
+                <p
+                    class="slds-var-m-vertical_small slds-text-body_small slds-text-color_weak"
+                >
+                    {resultsSummary}
+                </p>
+                <ul>
+                    <template for:each={recipeTiles} for:item="recipe">
+                        <li key={recipe.id} class="slds-var-m-bottom_x-small">
+                            <!-- Each recipe is a button so it works with a keyboard and screen readers -->
+                            <button
+                                type="button"
+                                class="recipe-tile"
+                                data-recipe-id={recipe.id}
+                                aria-pressed={recipe.isSelected}
+                                onclick={handleRecipeClick}
+                            >
+                                <span class="slds-show slds-text-heading_small"
+                                    >{recipe.name}</span
+                                >
+                                <span
+                                    class="recipe-details slds-text-body_small"
+                                >
+                                    <span
+                                        lwc:if={recipe.complexity}
+                                        class="slds-badge"
+                                    >
+                                        {recipe.complexity}
+                                    </span>
+                                    <span lwc:if={recipe.season}
+                                        >{recipe.season}</span
+                                    >
+                                    <span
+                                        lwc:if={recipe.activeTime}
+                                        class="slds-grid slds-grid_vertical-align-center"
+                                    >
+                                        <lightning-icon
+                                            icon-name="utility:clock"
+                                            size="xx-small"
+                                            alternative-text="Active time"
+                                            class="slds-var-m-right_xx-small"
+                                        ></lightning-icon>
+                                        {recipe.activeTime}
+                                    </span>
+                                </span>
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template lwc:else>
+                <div
+                    class="slds-text-align_center slds-text-color_weak slds-var-p-around_large"
+                >
+                    <p class="slds-text-heading_small">No recipes found</p>
+                    <p>Try a different search.</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
 </template>

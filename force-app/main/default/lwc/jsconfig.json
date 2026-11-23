@@ -3,9 +3,6 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/hello": [
-                "hello/hello.js"
-            ],
             "c/*": [
                 "*"
             ]

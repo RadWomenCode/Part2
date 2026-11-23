@@ -1,8 +1,35 @@
+/*
+ * Each recipe is a <button> styled like a card.
+ * The colors use SLDS styling hooks (--slds-g-...) so they follow the org's
+ * theme. The color after each comma is a backup in case the hook isn't set.
+ */
 .recipe-tile {
-    border: 1px solid #d2955d;
-    border-radius: .25rem;
-    display: block;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font: inherit;
+    color: var(--slds-g-color-on-surface-2, #2e2e2e);
+    background: var(--slds-g-color-surface-container-1, #fff);
+    border: 1px solid var(--slds-g-color-border-1, #c9c9c9);
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
-.book-silhouette {
-    height: 100px;
+
+.recipe-tile:hover {
+    background: var(--slds-g-color-surface-container-2, #f3f3f3);
+}
+
+/* The selected recipe has aria-pressed="true" (set in the HTML) */
+.recipe-tile[aria-pressed="true"] {
+    background: var(--slds-g-color-palette-blue-95, #eef4ff);
+    border-color: var(--slds-g-color-accent-1, #066afe);
+}
+
+/* Complexity, season, and time sit in one row that wraps on small screens */
+.recipe-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
 }

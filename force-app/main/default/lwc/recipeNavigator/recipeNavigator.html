@@ -1,18 +1,70 @@
 <template>
-    <div class="slds-grid slds-wrap">
-        <div class="slds-col slds-size_1-of-1">
-            <c-recipe-list ongroceries={handleGroceries} oningredients={handleIngredients} onscale={handleScaling}></c-recipe-list>
+    <div class="slds-grid slds-wrap slds-gutters">
+        <!-- Left side: pick a recipe -->
+        <div
+            class="slds-col slds-size_1-of-1 slds-large-size_5-of-12 slds-var-m-bottom_medium"
+        >
+            <c-recipe-list onrecipeselect={handleRecipeSelect}></c-recipe-list>
         </div>
-        <div class="slds-col slds-grid slds-size_1-of-1 slds-var-m-top_medium slds-gutters">
-            <div class="slds-col slds-size_1-of-3">
-                <c-grocery-list></c-grocery-list>
-            </div>
-            <div class="slds-col slds-size_1-of-3">
-                <c-recipe-editor></c-recipe-editor>
-            </div>
-            <div class="slds-col slds-size_1-of-3">
-                <c-recipe-scale-preview></c-recipe-scale-preview>
-            </div>
+
+        <!-- Right side: work with the recipe you picked -->
+        <div
+            class="slds-col slds-size_1-of-1 slds-large-size_7-of-12 slds-var-m-bottom_medium"
+        >
+            <lightning-card title={cardTitle} icon-name="standard:task">
+                <template lwc:if={hasSelectedRecipe}>
+                    <lightning-tabset>
+                        <lightning-tab
+                            label="Grocery List"
+                            icon-name="utility:cart"
+                        >
+                            <c-grocery-list
+                                lwc:ref="groceryList"
+                                recipe-id={selectedRecipeId}
+                            ></c-grocery-list>
+                        </lightning-tab>
+                        <lightning-tab
+                            label="Add Ingredient"
+                            icon-name="utility:add"
+                        >
+                            <c-recipe-editor
+                                recipe-id={selectedRecipeId}
+                                recipe-name={selectedRecipeName}
+                                oningredientadded={handleIngredientAdded}
+                            ></c-recipe-editor>
+                        </lightning-tab>
+                        <lightning-tab
+                            label="Scale Recipe"
+                            icon-name="utility:magicwand"
+                        >
+                            <c-recipe-scale-preview
+                                recipe-id={selectedRecipeId}
+                                recipe-name={selectedRecipeName}
+                            ></c-recipe-scale-preview>
+                        </lightning-tab>
+                    </lightning-tabset>
+                </template>
+                <template lwc:else>
+                    <div
+                        class="slds-text-align_center slds-text-color_weak slds-var-p-around_xx-large"
+                    >
+                        <lightning-icon
+                            icon-name="utility:recipe"
+                            size="large"
+                            alternative-text="Recipe"
+                            class="slds-var-m-bottom_small"
+                        ></lightning-icon>
+                        <p class="slds-text-heading_small">
+                            Pick a recipe to get started
+                        </p>
+                        <p>
+                            Choose a recipe from the list to see its grocery
+                            list, add ingredients, or scale it to a different
+                            number of servings.
+                        </p>
+                    </div>
+                </template>
+            </lightning-card>
         </div>
     </div>
 </template>

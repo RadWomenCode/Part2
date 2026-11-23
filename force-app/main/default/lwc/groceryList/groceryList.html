@@ -1,12 +1,46 @@
 <template>
-    <lightning-card  title="Groceries" icon-name="utility:cart">
-        <div if:true={ingredients}>
+    <div class="slds-is-relative slds-var-p-around_medium">
+        <!-- Spinner shows while we wait for Apex -->
+        <template lwc:if={isLoading}>
+            <lightning-spinner
+                alternative-text="Loading grocery list"
+                size="small"
+            ></lightning-spinner>
+        </template>
+
+        <!-- Error, ingredients, or empty state: only one of these shows at a time -->
+        <template lwc:if={hasError}>
+            <div
+                class="slds-scoped-notification slds-media slds-media_center slds-theme_error"
+                role="alert"
+            >
+                <div class="slds-media__figure">
+                    <lightning-icon
+                        icon-name="utility:error"
+                        variant="inverse"
+                        size="x-small"
+                    ></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <p>We couldn't load the grocery list. {errorMessage}</p>
+                </div>
+            </div>
+        </template>
+        <template lwc:elseif={hasIngredients}>
             <lightning-datatable
                 key-field="Id"
                 data={ingredients}
-                hide-checkbox-column 
-                columns={columns}>
-            </lightning-datatable>
-        </div>
-    </lightning-card>
+                columns={columns}
+                hide-checkbox-column
+            ></lightning-datatable>
+        </template>
+        <template lwc:elseif={showEmptyState}>
+            <div
+                class="slds-text-align_center slds-text-color_weak slds-var-p-around_large"
+            >
+                <p class="slds-text-heading_small">No ingredients yet</p>
+                <p>Use the Add Ingredient tab to add some.</p>
+            </div>
+        </template>
+    </div>
 </template>

@@ -1,20 +1,80 @@
 <template>
-    
-    <lightning-card  title="Scaled Recipe Preview" icon-name="utility:magicwand">
-        <div if:true={recipeName}>
-            <lightning-input type="number" label={inputLabel} step="1" placeholder="enter a whole number..." onchange={handleServingChange} class="slds-m-left_x-small"></lightning-input>
-            <lightning-button disabled={buttonDisabled} variant="brand" label="Scale" onclick={handleScaling} class="slds-m-left_x-small"></lightning-button>
-
-            <div if:true={ingredients} class="slds-m-around_small">
-                <h1 class="slds-text-heading_medium">Showing <strong>{recipeName}</strong> scaled to: {desiredServings} servings</h1>
-                <lightning-datatable
-                    key-field="Id"
-                    data={ingredients}
-                    hide-checkbox-column 
-                    columns={columns}>
-                </lightning-datatable>
+    <div class="slds-var-p-around_medium">
+        <!-- Servings input and Scale button -->
+        <div class="slds-grid slds-grid_vertical-align-end slds-gutters_small">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                <lightning-input
+                    type="number"
+                    label="Servings you want to make"
+                    placeholder="For example, 8"
+                    step="1"
+                    min="1"
+                    value={desiredServings}
+                    onchange={handleServingsChange}
+                ></lightning-input>
+            </div>
+            <div class="slds-col slds-grow-none">
+                <lightning-button
+                    variant="brand"
+                    label="Scale Recipe"
+                    icon-name="utility:magicwand"
+                    disabled={isScaleDisabled}
+                    onclick={handleScale}
+                ></lightning-button>
             </div>
         </div>
-    </lightning-card>
 
+        <!-- Results area -->
+        <div class="slds-is-relative slds-var-m-top_large">
+            <template lwc:if={isLoading}>
+                <lightning-spinner
+                    alternative-text="Scaling recipe"
+                    size="small"
+                ></lightning-spinner>
+            </template>
+
+            <!-- Error, scaled ingredients, or "no ingredients": only one shows at a time -->
+            <template lwc:if={hasError}>
+                <div
+                    class="slds-scoped-notification slds-media slds-media_center slds-theme_error"
+                    role="alert"
+                >
+                    <div class="slds-media__figure">
+                        <lightning-icon
+                            icon-name="utility:error"
+                            variant="inverse"
+                            size="x-small"
+                        ></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <p>We couldn't scale the recipe. {errorMessage}</p>
+                    </div>
+                </div>
+            </template>
+            <template lwc:elseif={hasResults}>
+                <h3 class="slds-text-heading_small">{resultsHeading}</h3>
+                <p
+                    class="slds-var-m-bottom_small slds-text-body_small slds-text-color_weak"
+                >
+                    This is a preview. Nothing has been saved.
+                </p>
+                <lightning-datatable
+                    key-field="Id"
+                    data={scaledIngredients}
+                    columns={columns}
+                    hide-checkbox-column
+                ></lightning-datatable>
+            </template>
+            <template lwc:elseif={hasNoIngredients}>
+                <div
+                    class="slds-text-align_center slds-text-color_weak slds-var-p-around_large"
+                >
+                    <p class="slds-text-heading_small">
+                        No ingredients to scale
+                    </p>
+                    <p>Add some ingredients to this recipe first.</p>
+                </div>
+            </template>
+        </div>
+    </div>
 </template>
